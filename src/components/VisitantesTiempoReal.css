@@ -16,11 +16,14 @@
   max-width: 600px;
   width: 100%;
   border-style: double;
+  border-width: 5px; 
+  border-style: solid; 
+  border-image: linear-gradient(to right, #92beff, #193785) 1
 }
 
 .logo-tiempo-real {
   position: absolute;
-  top: -20px;
+  top: -50px;
   left: -20px;
   width: 100px;
   height: 100px;
