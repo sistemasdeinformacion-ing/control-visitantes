@@ -55,6 +55,15 @@ input {
   outline: none;
 }
 
+select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px dashed #00167a;
+  outline: none;
+  background-color: white;
+  font-size: 14px;
+}
+
 button {
   color: black;
   background: linear-gradient(to bottom, #ececec, #b3b1b1);
