@@ -15,6 +15,7 @@
   position: relative;
   width: 100%;
   max-width: 400px;
+  height: 300px;
 }
 
 .logo-form {
@@ -64,7 +65,7 @@ button {
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 8px;
+  margin-top: 15px;
 }
 
 button:hover {
