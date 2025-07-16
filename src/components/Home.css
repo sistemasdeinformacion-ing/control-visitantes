@@ -10,7 +10,8 @@
   background: white;
   position: relative;
   align-content: center;
-    padding-bottom: 140px;
+  padding-bottom: 140px;
+  height: 100vh;
 }
 
 .header {
