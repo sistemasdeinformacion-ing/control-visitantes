@@ -6,8 +6,8 @@ function Home() {
   return (
     <div className="container">
     <div className='header'>
-      <img src={logo} alt="Logo" className="logo" />
-      <img src={fondoAgua} alt="Decoración superior" className="fondo-superior" />
+    <img src={logo} alt="Logo" className="logo" />
+    <img src={fondoAgua} alt="Decoración superior" className="fondo-superior" />
     </div>
       <h1 className="titulo">CONTROL DE VISITANTES</h1>
 
