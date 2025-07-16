@@ -19,9 +19,9 @@
 
 .logo-form {
   position: absolute;
-  top: -55px;
+  top: -57px;
   left: -14px;
-  width: 110px;
+  width: 108px;
   height: 100px;
   border-radius: 50%;
   border: 2px solid #00167a;
@@ -64,6 +64,7 @@ button {
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: 8px;
 }
 
 button:hover {
