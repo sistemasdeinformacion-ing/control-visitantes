@@ -5,35 +5,39 @@ import fondoAgua from '../assets/fondo-agua.png';
 import logo from "../assets/logo.png";
 
 const Home = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const irARegistroEntrada = () => {
-    navigate("/registro-entrada");
-  };
+    const irARegistroEntrada = () => {
+        navigate("/registro-entrada");
+    };
 
     const irARegistroSalida = () => {
-    navigate("/registro-salida");
-  };
+        navigate("/registro-salida");
+    };
 
-  return (
-    <div className="container">
-        <div className="header">
-      <img src={logo} alt="Logo" className="logo" />
-      <img src={fondoAgua} alt="Decoración superior" className="fondo-superior" />
-</div>
+    const irATiempoReal = () => {
+        navigate("/tiempo-real");
+    };
 
-      <h1 className="titulo">CONTROL DE VISITANTES</h1>
+    return (
+        <div className="container">
+            <div className="header">
+                <img src={logo} alt="Logo" className="logo" />
+                <img src={fondoAgua} alt="Decoración superior" className="fondo-superior" />
+            </div>
 
-      <div className="botones">
-        <button onClick={irARegistroEntrada}>REGISTRAR ENTRADA DE VISITANTE</button>
-        <button onClick={irARegistroSalida}>REGISTRAR SALIDA DE VISITANTE</button>
-        <button>VISUALIZAR VISITANTES EN TIEMPO REAL</button>
-        <button>GENERAR REPORTES DE VISITANTES</button>
-      </div>
+            <h1 className="titulo">CONTROL DE VISITANTES</h1>
 
-      <img src={fondoAgua} alt="Decoracion Inferior" className="fondo-inferior" />
-    </div>
-  );
+            <div className="botones">
+                <button onClick={irARegistroEntrada}>REGISTRAR ENTRADA DE VISITANTE</button>
+                <button onClick={irARegistroSalida}>REGISTRAR SALIDA DE VISITANTE</button>
+                <button onClick={irATiempoReal}>VISUALIZAR VISITANTES EN TIEMPO REAL</button>
+                <button>GENERAR REPORTES DE VISITANTES</button>
+            </div>
+
+            <img src={fondoAgua} alt="Decoracion Inferior" className="fondo-inferior" />
+        </div>
+    );
 };
 
 export default Home;

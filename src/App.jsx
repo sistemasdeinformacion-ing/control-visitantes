@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import RegistroEntrada from "./components/RegistroEntrada";
 import RegistroSalida from "./components/RegistroSalida";
+import VisitantesTiempoReal from "./components/VisitantesTiempoReal";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/registro-entrada" element={<RegistroEntrada />} />
         <Route path="/registro-salida" element={<RegistroSalida />} />
+        <Route path="/tiempo-real" element={<VisitantesTiempoReal />} />
       </Routes>
     </Router>
   );
