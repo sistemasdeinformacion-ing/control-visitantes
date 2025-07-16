@@ -67,7 +67,6 @@ select {
 .submit {
   color: black;
   background: linear-gradient(to bottom, #ececec, #b3b1b1);
-  border: none;
   padding: 12px;
   font-weight: bold;
   border-radius: 25px;
@@ -83,7 +82,7 @@ select {
 .search {
   color: black;
   background: linear-gradient(to bottom, #dddddd, #a1a0a0);
-  border: none;
+  border: 1px solid blue;
   padding: 10px;
   font-weight: bold;
   border-radius: 18px;
