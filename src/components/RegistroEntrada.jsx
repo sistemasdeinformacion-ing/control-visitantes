@@ -12,6 +12,7 @@ const RegistroEntrada = () => {
                 <form>
                     <label>Documento de Identidad:</label>
                     <input type="text" placeholder="Número de documento" />
+                    <button className="search" type="submit">RUSCAR VISITANTE</button>
 
                     <label>Nombre:</label>
                     <input type="text" placeholder="Nombre completo" />
@@ -33,7 +34,7 @@ const RegistroEntrada = () => {
                     <label>Funcionario a Visitar:</label>
                     <input type="text" placeholder="Nombre del funcionario" />
 
-                    <button type="submit">REGISTRAR ENTRADA</button>
+                    <button className="submit" type="submit">REGISTRAR ENTRADA</button>
                 </form>
             </div>
         </div>
