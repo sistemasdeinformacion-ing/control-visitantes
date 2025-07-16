@@ -1,7 +1,14 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 .container {
   text-align: center;
   padding: 20px;
-  height: 80vh;
+  height: 100%;
   background: white;
   position: relative;
 }
