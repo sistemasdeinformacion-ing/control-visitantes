@@ -74,22 +74,4 @@
   left: 0;
 }
 
-@media (max-width: 600px) {
-  .logo {
-    height: 70px;
-    width: 70px;
-  }
 
-  .titulo {
-    font-size: 22px;
-  }
-
-  .botones button {
-    font-size: 14px;
-    padding: 12px;
-  }
-
-  .botones {
-    gap: 15px;
-  }
-}
