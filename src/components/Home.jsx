@@ -1,26 +1,36 @@
-import './Home.css';
-import logo from '../assets/logo.png';
+// src/components/Home.jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Home.css";
 import fondoAgua from '../assets/fondo-agua.png';
+import logo from "../assets/logo.png";
 
-function Home() {
+const Home = () => {
+  const navigate = useNavigate();
+
+  const irARegistroEntrada = () => {
+    navigate("/registro-entrada");
+  };
+
   return (
     <div className="container">
-    <div className='header'>
-    <img src={logo} alt="Logo" className="logo" />
-    <img src={fondoAgua} alt="Decoración superior" className="fondo-superior" />
-    </div>
+        <div className="header">
+      <img src={logo} alt="Logo" className="logo" />
+      <img src={fondoAgua} alt="Decoración superior" className="fondo-superior" />
+</div>
+
       <h1 className="titulo">CONTROL DE VISITANTES</h1>
 
       <div className="botones">
-        <button>REGISTRAR ENTRADA DE VISITANTE</button>
+        <button onClick={irARegistroEntrada}>REGISTRAR ENTRADA DE VISITANTE</button>
         <button>REGISTRAR SALIDA DE VISITANTE</button>
         <button>VISUALIZAR VISITANTES EN TIEMPO REAL</button>
         <button>GENERAR REPORTES DE VISITANTES</button>
       </div>
 
-      <img src={fondoAgua} alt="Decoración inferior" className="fondo-inferior" />
+      <img src={fondoAgua} alt="Decoracion Inferior" className="fondo-inferior" />
     </div>
   );
-}
+};
 
 export default Home;
