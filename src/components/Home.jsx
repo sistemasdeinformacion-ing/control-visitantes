@@ -19,6 +19,10 @@ const Home = () => {
         navigate("/tiempo-real");
     };
 
+    const irAReporte = () => {
+        navigate("/reporte");
+    };
+
     return (
         <div className="container">
             <div className="header">
@@ -32,10 +36,10 @@ const Home = () => {
                 <button onClick={irARegistroEntrada}>REGISTRAR ENTRADA DE VISITANTE</button>
                 <button onClick={irARegistroSalida}>REGISTRAR SALIDA DE VISITANTE</button>
                 <button onClick={irATiempoReal}>VISUALIZAR VISITANTES EN TIEMPO REAL</button>
-                <button>GENERAR REPORTES DE VISITANTES</button>
+                <button onClick={irAReporte}>GENERAR REPORTES DE VISITANTES</button>
             </div>
 
-            <img src={fondoAgua} alt="Decoracion Inferior" className="fondo-inferior" />
+            <img src={fondoAgua} alt="Decoracion Inferior" className="fondo_inferior" />
         </div>
     );
 };
