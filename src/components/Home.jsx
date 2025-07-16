@@ -39,7 +39,7 @@ const Home = () => {
                 <button onClick={irAReporte}>GENERAR REPORTES DE VISITANTES</button>
             </div>
 
-            <img src={fondoAgua} alt="Decoracion Inferior" className="fondo_inferior" />
+            <img src={fondoAgua} alt="Decoracion inferior" className="fondo-inferior" />
         </div>
     );
 };
