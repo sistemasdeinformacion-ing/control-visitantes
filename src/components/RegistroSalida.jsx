@@ -13,7 +13,7 @@ const RegistroSalida = () => {
                     <label>Documento de Identidad:</label>
                     <input type="text" placeholder="Número de documento" />
 
-                    <button type="submit">REGISTRAR SALIDA</button>
+                    <button className="submit" type="submit">REGISTRAR SALIDA</button>
                 </form>
             </div>
         </div>
