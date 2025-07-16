@@ -89,7 +89,7 @@ select {
   border-radius: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 44%;
+  width: 50%;
   height: 30px;
   font-size: 12px;
 }
