@@ -1,14 +1,15 @@
 .container {
   text-align: center;
   padding: 20px;
-  position: relative;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #e2edf1, #ffffff);
+  height: 100vh;
+  background: white;
 }
 
 .logo {
   width: 120px;
   margin-top: 10px;
+  border-radius: 50%;
+  border-color: #00167a;
 }
 
 .fondo-superior {
@@ -32,9 +33,9 @@
 }
 
 .botones button {
-  background-color: #e0f2f1;
-  border: 2px solid #1565c0;
-  color: #0d47a1;
+  background-color: #e2edf1;
+  border: 2px solid #00167a;
+  color: black;
   padding: 15px;
   font-weight: bold;
   border-radius: 8px;
@@ -44,7 +45,7 @@
 }
 
 .botones button:hover {
-  background-color: #bbdefb;
+  background-color: #a2c7e6;
 }
 
 .fondo-inferior {
