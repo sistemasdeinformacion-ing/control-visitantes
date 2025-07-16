@@ -5,14 +5,20 @@
   background: white;
 }
 
+.header {
+  display: flex;
+  
+}
+
 .logo {
+  border: 2px solid #00167a;
+  border-radius: 50%;
   width: 120px;
   margin-top: 10px;
-  border-radius: 50%;
-  border-color: #00167a;
 }
 
 .fondo-superior {
+  rotate: 180deg;
   width: 100%;
   max-height: 70px;
   object-fit: cover;
