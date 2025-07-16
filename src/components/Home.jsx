@@ -1,4 +1,3 @@
-// src/components/Home.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
@@ -12,6 +11,10 @@ const Home = () => {
     navigate("/registro-entrada");
   };
 
+    const irARegistroSalida = () => {
+    navigate("/registro-salida");
+  };
+
   return (
     <div className="container">
         <div className="header">
@@ -23,7 +26,7 @@ const Home = () => {
 
       <div className="botones">
         <button onClick={irARegistroEntrada}>REGISTRAR ENTRADA DE VISITANTE</button>
-        <button>REGISTRAR SALIDA DE VISITANTE</button>
+        <button onClick={irARegistroSalida}>REGISTRAR SALIDA DE VISITANTE</button>
         <button>VISUALIZAR VISITANTES EN TIEMPO REAL</button>
         <button>GENERAR REPORTES DE VISITANTES</button>
       </div>

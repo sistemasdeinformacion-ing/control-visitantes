@@ -1,7 +1,6 @@
-// src/components/RegistroEntrada.jsx
 import React from "react";
 import "./RegistroEntrada.css";
-import logo from "../assets/logo.png"; // Ajusta el path si es diferente
+import logo from "../assets/logo.png"; 
 
 const RegistroEntrada = () => {
     return (
