@@ -5,6 +5,8 @@ import RegistroEntrada from "./components/RegistroEntrada";
 import RegistroSalida from "./components/RegistroSalida";
 import VisitantesTiempoReal from "./components/VisitantesTiempoReal";
 import ReporteVisitantes from "./components/ReporteVisitantes";
+import RegistroVigilante from "./components/RegistroVigilante";
+
 
 
 import ControlVigilante from "./components/ControlVigilante";
@@ -14,6 +16,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<ControlVigilante />} />
+        <Route path="/registrar-vigilante" element={<RegistroVigilante />} />
         <Route path="/home" element={<Home />} />
         <Route path="/registro-entrada" element={<RegistroEntrada />} />
         <Route path="/registro-salida" element={<RegistroSalida />} />

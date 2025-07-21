@@ -1,0 +1,73 @@
+.entrada-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 92vh;
+  background: linear-gradient(to bottom,#92beff, #193785);
+  padding: 20px;
+}
+
+.entrada-form {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.logo-form {
+  position: absolute;
+  top: -69px;
+  left: -14px;
+  width: 108px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #00167a;
+  background-color: white;
+}
+
+.entrada-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.titulo-negro {
+  color: #162144;
+}
+
+.titulo-azul {
+  color: #428ce2;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px dashed #00167a;
+  outline: none;
+}
+
+.submit {
+  color: black;
+  background: linear-gradient(to bottom, #ececec, #b3b1b1);
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.submit:hover {
+  background: linear-gradient(to bottom, #dbeeff, #a2c6e2);
+}
+
+

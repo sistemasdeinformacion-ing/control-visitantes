@@ -1,6 +1,6 @@
 import React from "react";
 import "./RegistroEntrada.css";
-import logo from "../assets/logo.png"; 
+import logo from "../assets/logo.png";
 
 const RegistroEntrada = () => {
     return (
