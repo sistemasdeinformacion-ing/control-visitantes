@@ -59,6 +59,7 @@
 }
 
 .botones button img {
-  width: 110px;
+  width: 105px;
   height: 90px;
+  margin-left: 9px;
 }
