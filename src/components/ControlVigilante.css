@@ -2,7 +2,7 @@
   text-align: center;
   background: white;
   position: relative;
-  min-height: 92vh;
+  min-height: 95vh;
   padding: 20px;
 }
 
@@ -42,7 +42,7 @@
 .botones {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .botones button {
@@ -54,6 +54,8 @@
   border: 2px solid #00167a;
   border-radius: 8px;
   cursor: pointer;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .botones button img {
