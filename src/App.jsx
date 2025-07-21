@@ -6,11 +6,15 @@ import RegistroSalida from "./components/RegistroSalida";
 import VisitantesTiempoReal from "./components/VisitantesTiempoReal";
 import ReporteVisitantes from "./components/ReporteVisitantes";
 
+
+import ControlVigilante from "./components/ControlVigilante";
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<ControlVigilante />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/registro-entrada" element={<RegistroEntrada />} />
         <Route path="/registro-salida" element={<RegistroSalida />} />
         <Route path="/tiempo-real" element={<VisitantesTiempoReal />} />
