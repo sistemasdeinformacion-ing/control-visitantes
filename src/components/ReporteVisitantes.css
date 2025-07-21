@@ -9,18 +9,20 @@
 
 .reporte-box {
   background-color: white;
-  border: 3px solid #00167a;
-  border-radius: 15px;
   padding: 40px;
   position: relative;
   max-width: 600px;
   width: 100%;
+  border-style: double;
+  border-width: 5px; 
+  border-style: solid; 
+  border-image: linear-gradient(to right, #92beff, #193785) 1
 }
 
 .logo-reporte {
   position: absolute;
-  top: -50px;
-  left: -50px;
+  top: -20px;
+  left: -20px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -29,13 +31,11 @@
 }
 
 .titulo-negro {
-  color: black;
-  font-family: 'Georgia', serif;
+  color: #162144;
 }
 
 .titulo-azul {
-  color: #0b63c5;
-  font-family: 'Georgia', serif;
+  color: #428ce2;
 }
 
 .filtros {
@@ -59,7 +59,7 @@
 }
 
 .btn-exportar {
-  background: #0b63c5;
+  background: #a2c6e2;
   color: white;
   border: none;
   padding: 10px 16px;
@@ -90,6 +90,6 @@
 }
 
 .icono-img {
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 35px;
 }

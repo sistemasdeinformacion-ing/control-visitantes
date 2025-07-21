@@ -78,7 +78,7 @@ const ReporteVisitantes = () => {
             />
           </div>
           <button className="btn-exportar" onClick={handleExportar}>
-            <img src={iconoDescarga} alt="Descargar" className="icono-img" /> Descargar
+            <img src={iconoDescarga} alt="Descargar" className="icono-img"/>
           </button>
         </div>
 
