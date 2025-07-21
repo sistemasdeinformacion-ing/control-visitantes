@@ -16,8 +16,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<ControlVigilante />} />
-        <Route path="/registrar-vigilante" element={<RegistroVigilante />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/registrar-vigilante" element={<RegistroVigilante />} />
         <Route path="/registro-entrada" element={<RegistroEntrada />} />
         <Route path="/registro-salida" element={<RegistroSalida />} />
         <Route path="/tiempo-real" element={<VisitantesTiempoReal />} />

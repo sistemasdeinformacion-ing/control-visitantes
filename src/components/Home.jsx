@@ -39,8 +39,6 @@ const Home = () => {
                 <button onClick={irAReportes}>GENERAR REPORTES DE VISITANTES</button>
             </div>
 
-            const vigilante = localStorage.getItem("vigilante");
-            <h2 className="vigilante-activo">Vigilante en control: {vigilante}</h2>
 
 
             <img src={fondoAgua} alt="Decoracion inferior" className="fondo-inferior" />

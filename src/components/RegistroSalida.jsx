@@ -1,23 +1,61 @@
-import React from "react";
+// src/components/RegistroSalida.jsx
+import React, { useState } from "react";
 import "./RegistroSalida.css";
 import logo from "../assets/logo.png";
 
 const RegistroSalida = () => {
-    return (
-        <div className="salida-container">
-            <div className="salida-form">
-                <img src={logo} alt="Logo" className="logo-form" />
-                <h2><span className="titulo-negro">REGISTRO</span> <span className="titulo-azul">SALIDA</span></h2>
+  const [documento, setDocumento] = useState("");
 
-                <form>
-                    <label>Documento de Identidad:</label>
-                    <input type="text" placeholder="Número de documento" />
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-                    <button className="submit" type="submit">REGISTRAR SALIDA</button>
-                </form>
-            </div>
-        </div>
-    );
+    if (!documento.trim()) {
+      alert("Por favor ingresa el documento de identidad");
+      return;
+    }
+
+    const now = new Date();
+    const fechaSalida = now.toISOString().split("T")[0];
+    const horaSalida = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    const registroSalida = {
+      documento,
+      fechaSalida,
+      horaSalida,
+    };
+
+    console.log("Salida registrada:", registroSalida);
+    alert("Salida registrada correctamente");
+
+    setDocumento(""); 
+  };
+
+  return (
+    <div className="salida-container">
+      <div className="salida-form">
+        <img src={logo} alt="Logo" className="logo-form" />
+        <h2>
+          <span className="titulo-negro">REGISTRO</span>{" "}
+          <span className="titulo-azul">SALIDA</span>
+        </h2>
+
+        <form onSubmit={handleSubmit}>
+          <label>Documento de Identidad:</label>
+          <input
+            type="text"
+            placeholder="Número de documento"
+            value={documento}
+            onChange={(e) => setDocumento(e.target.value)}
+            required
+          />
+
+          <button className="submit" type="submit">
+            REGISTRAR SALIDA
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default RegistroSalida;

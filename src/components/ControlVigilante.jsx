@@ -13,7 +13,7 @@ const ControlVigilante = () => {
 
     const ingresarConVigilante = (nombre) => {
         localStorage.setItem("vigilante", nombre);
-        navigate("/");
+        navigate("/home");
     };
 
     return (

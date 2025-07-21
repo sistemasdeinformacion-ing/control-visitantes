@@ -70,4 +70,26 @@ input {
   background: linear-gradient(to bottom, #dbeeff, #a2c6e2);
 }
 
+.iconos-genero {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
+.icono-genero {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.icono-genero:hover {
+  transform: scale(1.05);
+}
+
+.icono-genero.seleccionado {
+  border-color: #00167a;
+  box-shadow: 0 0 10px rgba(0, 22, 122, 0.5);
+}
