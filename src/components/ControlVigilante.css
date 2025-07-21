@@ -35,9 +35,8 @@
 
 .titulo {
   font-family: 'Georgia', serif;
-  font-size: 28px;
   color: black;
-  margin: 90px 0 20px;
+  margin: 103px 0 20px;
 }
 
 .botones {
@@ -49,7 +48,6 @@
 .botones button {
   display: flex;
   align-items: center;
-  justify-content: center;
   font-weight: bold;
   background: #e2edf1;
   border: 2px solid #00167a;
@@ -58,6 +56,6 @@
 }
 
 .botones button img {
-  width: 150px;
+  width: 140px;
   height: 90px;
 }
