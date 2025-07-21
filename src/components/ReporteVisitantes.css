@@ -1,0 +1,95 @@
+.reporte-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: white;
+  padding: 20px;
+}
+
+.reporte-box {
+  background-color: white;
+  border: 3px solid #00167a;
+  border-radius: 15px;
+  padding: 40px;
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+}
+
+.logo-reporte {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #00167a;
+  background-color: white;
+}
+
+.titulo-negro {
+  color: black;
+  font-family: 'Georgia', serif;
+}
+
+.titulo-azul {
+  color: #0b63c5;
+  font-family: 'Georgia', serif;
+}
+
+.filtros {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.input-fecha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-fecha input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+}
+
+.btn-exportar {
+  background: #0b63c5;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-exportar:hover {
+  background-color: #094b96;
+}
+
+.cards-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-visitante {
+  border: 2px solid #00167a;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.icono-img {
+  width: 20px;
+  height: 20px;
+}

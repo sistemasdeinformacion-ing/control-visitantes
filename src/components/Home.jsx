@@ -19,8 +19,8 @@ const Home = () => {
         navigate("/tiempo-real");
     };
 
-    const irAReporte = () => {
-        navigate("/reporte");
+    const irAReportes = () => {
+        navigate("/reportes");
     };
 
     return (
@@ -36,7 +36,7 @@ const Home = () => {
                 <button onClick={irARegistroEntrada}>REGISTRAR ENTRADA DE VISITANTE</button>
                 <button onClick={irARegistroSalida}>REGISTRAR SALIDA DE VISITANTE</button>
                 <button onClick={irATiempoReal}>VISUALIZAR VISITANTES EN TIEMPO REAL</button>
-                <button onClick={irAReporte}>GENERAR REPORTES DE VISITANTES</button>
+                <button onClick={irAReportes}>GENERAR REPORTES DE VISITANTES</button>
             </div>
 
             <img src={fondoAgua} alt="Decoracion inferior" className="fondo-inferior" />
