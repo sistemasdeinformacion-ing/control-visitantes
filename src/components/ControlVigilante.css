@@ -48,6 +48,7 @@
 .botones button {
   display: flex;
   align-items: center;
+  justify-content: center;
   font-weight: bold;
   background: #e2edf1;
   border: 2px solid #00167a;
@@ -56,6 +57,6 @@
 }
 
 .botones button img {
-  width: 120px;
+  width: 116px;
   height: 90px;
 }
