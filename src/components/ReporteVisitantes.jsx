@@ -15,28 +15,24 @@ const ReporteVisitantes = () => {
   const [visitantes, setVisitantes] = useState([]);
   const logoRef = useRef(null);
 
-  useEffect(() => {
-    const obtenerVisitantes = async () => {
-      try {
-        // Aquí va tu API en producción
-        // const respuesta = await fetch(`http://localhost:3000/api/reportes?fecha=${fechaSeleccionada}`);
-        // const data = await respuesta.json();
-        // setVisitantes(data);
+useEffect(() => {
+  const obtenerVisitantes = async () => {
+    try {
+      const respuesta = await fetch(`http://localhost:3001/api/visitantes/reporte?fecha=${fechaSeleccionada}`);
+      const data = await respuesta.json();
+      setVisitantes(data);
+    } catch (error) {
+      console.error("Error al cargar los visitantes:", error);
+    }
+  };
 
-        setVisitantes([]); // Por ahora, sin datos reales
-      } catch (error) {
-        console.error("Error al cargar los visitantes:", error);
-      }
-    };
-
-    obtenerVisitantes();
-  }, [fechaSeleccionada]);
+  obtenerVisitantes();
+}, [fechaSeleccionada]);
 
   const handleExportar = () => {
     const doc = new jsPDF();
     const vigilante = localStorage.getItem("vigilante") || "No identificado";
 
-    // Convertir imagen del logo en base64
     const img = logoRef.current;
     const canvas = document.createElement("canvas");
     canvas.width = img.naturalWidth;
@@ -45,7 +41,6 @@ const ReporteVisitantes = () => {
     ctx.drawImage(img, 0, 0);
     const logoData = canvas.toDataURL("image/png");
 
-    // Encabezado
     doc.addImage(logoData, "PNG", 10, 10, 30, 30);
     doc.setFontSize(16);
     doc.text("Reporte de Visitantes", 50, 20);

@@ -6,30 +6,44 @@ import logo from "../assets/logo.png";
 const RegistroSalida = () => {
   const [documento, setDocumento] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!documento.trim()) {
-      alert("Por favor ingresa el documento de identidad");
-      return;
-    }
+  if (!documento.trim()) {
+    alert("Por favor ingresa el documento de identidad");
+    return;
+  }
 
-    const now = new Date();
-    const fechaSalida = now.toISOString().split("T")[0];
-    const horaSalida = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const now = new Date();
+  const fechaSalida = now.toISOString().split("T")[0];
+  const horaSalida = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    const registroSalida = {
-      documento,
-      fechaSalida,
-      horaSalida,
-    };
-
-    console.log("Salida registrada:", registroSalida);
-    alert("Salida registrada correctamente");
-
-    setDocumento(""); 
+  const registroSalida = {
+    documento,
+    fechaSalida,
+    horaSalida,
   };
 
+  try {
+    const respuesta = await fetch("http://localhost:3001/api/visitantes/salida", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(registroSalida),
+    });
+
+    if (!respuesta.ok) {
+      const errorData = await respuesta.json();
+      throw new Error(errorData.error || "Error al registrar salida");
+    }
+
+    alert("Salida registrada correctamente");
+    setDocumento("");
+  } catch (error) {
+    console.error("Error:", error);
+    alert(error.message);
+  }
+};
+    
   return (
     <div className="salida-container">
       <div className="salida-form">

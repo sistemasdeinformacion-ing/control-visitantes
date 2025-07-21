@@ -5,22 +5,19 @@ import logo from "../assets/logo.png";
 const VisitantesTiempoReal = () => {
   const [visitantes, setVisitantes] = useState([]);
 
-  useEffect(() => {
-    const obtenerVisitantes = async () => {
-      try {
-        // Simulación: al principio no hay datos
-        // const respuesta = await fetch("http://localhost:3000/api/visitantes/activos");
-        // const data = await respuesta.json();
-        // setVisitantes(data);
+useEffect(() => {
+  const obtenerVisitantes = async () => {
+    try {
+      const respuesta = await fetch("http://localhost:3001/api/visitantes/activos");
+      const data = await respuesta.json();
+      setVisitantes(data);
+    } catch (error) {
+      console.error("Error al cargar visitantes en tiempo real:", error);
+    }
+  };
 
-        setVisitantes([]);
-      } catch (error) {
-        console.error("Error al cargar visitantes en tiempo real:", error);
-      }
-    };
-
-    obtenerVisitantes();
-  }, []);
+  obtenerVisitantes();
+}, []);
 
   return (
     <div className="tiempo-real-container">
