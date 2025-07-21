@@ -49,11 +49,11 @@
 .input-fecha {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .input-fecha input {
-  padding: 8px;
+  padding: 4px;
   border-radius: 8px;
   border: 1px solid #aaa;
 }
@@ -62,7 +62,7 @@
   background: #a2c6e2;
   color: white;
   border: none;
-  padding: 10px 16px;
+  padding: -3px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
@@ -90,6 +90,6 @@
 }
 
 .icono-img {
-  width: 50px;
-  height: 35px;
+  width: 70px;
+  height: 45px;
 }
