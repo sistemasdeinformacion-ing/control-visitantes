@@ -64,3 +64,7 @@
   height: 90px;
   margin-left: 9px;
 }
+
+.botones button:hover {
+  background-color: #c1dcf3;
+}
