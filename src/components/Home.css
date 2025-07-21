@@ -78,25 +78,28 @@
   z-index: 1; 
 }
 
-.vigilante-info {
+.vigilante-activo {
   position: absolute;
+  top: 15px;
   right: 20px;
-  top: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: #ffffffd6;
-  padding: 5px 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  z-index: 3;
-  font-weight: bold;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-size: 14px;
+  z-index: 2;
 }
 
 .icono-vigilante {
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  border: 2px solid #00167a;
+  margin-right: 8px;
+}
+
+.nombre-vigilante {
+  font-weight: bold;
+  color: #162144;
 }

@@ -11,10 +11,12 @@ import iconoAgregar from "../assets/icono-agregar.png";
 const ControlVigilante = () => {
     const navigate = useNavigate();
 
-    const ingresarConVigilante = (nombre) => {
-        localStorage.setItem("vigilante", nombre);
+    const ingresarConVigilante = (nombre, genero) => {
+        const vigilante = { nombre, genero };
+        localStorage.setItem("vigilante", JSON.stringify(vigilante));
         navigate("/home");
     };
+
 
     return (
         <div className="control-container">
@@ -24,15 +26,16 @@ const ControlVigilante = () => {
             <h1 className="titulo">VIGILANTE EN CONTROL</h1>
 
             <div className="botones">
-                <button onClick={() => ingresarConVigilante("Carlos Ruiz")}>
+                <button onClick={() => ingresarConVigilante("Carlos Alberto Ruiz González", "hombre")}>
                     <img className="icono-persona" src={vigilanteHombre} alt="vigilante hombre" />
-                    NOMBRE DEL VIGILANTE
+                    CARLOS ALBERTO RUIZ GONZÁLEZ
                 </button>
 
-                <button onClick={() => ingresarConVigilante("María Gómez")}>
+                <button onClick={() => ingresarConVigilante("Maria Sofía Gómez Pérez", "mujer")}>
                     <img className="icono-persona" src={vigilanteMujer} alt="vigilante mujer" />
-                    NOMBRE DEL VIGILANTE
+                    MARIA SOFIA GOMEZ PÉREZ
                 </button>
+
 
                 <button onClick={() => navigate("/registrar-vigilante")}>
                     <img className="icono-persona" src={iconoAgregar} alt="registrar" />
