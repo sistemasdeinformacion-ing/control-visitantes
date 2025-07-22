@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
 import "./RegistroEntrada.css";
 import logo from "../assets/logo.png";
 import Mensaje from "./Mensaje";
@@ -19,6 +20,8 @@ const RegistroEntrada = () => {
             return () => clearTimeout(timer);
         }
     }, [mensaje]);
+
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -60,7 +63,14 @@ const RegistroEntrada = () => {
     return (
         <div className="entrada-container">
             <div className="entrada-form">
-                <img src={logo} alt="Logo" className="logo-form" />
+                <img
+                    src={logo}
+                    alt="Logo"
+                    className="logo-form"
+                    onClick={() => navigate("/home")}
+                    style={{ cursor: "pointer" }}
+                />
+
                 <h2><span className="titulo-negro">REGISTRO</span> <span className="titulo-azul">ENTRADA</span></h2>
 
                 {mensaje.texto && <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />}

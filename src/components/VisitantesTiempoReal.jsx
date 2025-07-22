@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./VisitantesTiempoReal.css";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const VisitantesTiempoReal = () => {
   const [visitantes, setVisitantes] = useState([]);
@@ -18,6 +19,8 @@ const VisitantesTiempoReal = () => {
 
     obtenerVisitantes();
   }, []);
+
+  const navigate = useNavigate();
 
   const formatearHora12 = (hora) => {
     if (!hora) return "";
@@ -42,7 +45,14 @@ const VisitantesTiempoReal = () => {
 
     <div className="tiempo-real-container">
       <div className="tiempo-real-box">
-        <img src={logo} alt="Logo" className="logo-tiempo-real" />
+        <img
+          src={logo}
+          alt="Logo"
+          className="logo-tiempo-real"
+          onClick={() => navigate("/home")}
+          style={{ cursor: "pointer" }}
+        />
+
         <h2>
           <span className="titulo-negro">VISITANTES</span>{" "}
           <span className="titulo-azul">TIEMPO REAL</span>

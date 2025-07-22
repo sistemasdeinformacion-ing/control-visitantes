@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
-import fondoAgua from '../assets/fondo-agua.png';
+
+import fondoAgua from "../assets/fondo-agua.png";
 import logo from "../assets/logo.png";
 import vigilanteHombre from "../assets/vigilante-hombre.png";
 import vigilanteMujer from "../assets/vigilante-mujer.png";
-import iconoCerrarSesion from "../assets/cerrar-sesion.png"; // NUEVO
+import menuHamburguesa from "../assets/menu.png";
 
 const Home = () => {
     const navigate = useNavigate();
     const [vigilante, setVigilante] = useState(null);
+    const [menuAbierto, setMenuAbierto] = useState(false);
 
     useEffect(() => {
         const stored = localStorage.getItem("vigilante");
@@ -30,7 +32,19 @@ const Home = () => {
 
     const cerrarSesion = () => {
         localStorage.removeItem("vigilante");
-        navigate("/"); // redirige al panel de control del vigilante
+        navigate("/");
+    };
+
+    const eliminarPerfil = async () => {
+        try {
+            await fetch(`http://localhost:3001/api/vigilantes/${vigilante.documento}`, {
+                method: "DELETE",
+            });
+            localStorage.removeItem("vigilante");
+            navigate("/");
+        } catch (error) {
+            console.error("Error al eliminar el perfil:", error);
+        }
     };
 
     const icono = vigilante?.genero === "mujer" ? vigilanteMujer : vigilanteHombre;
@@ -45,11 +59,20 @@ const Home = () => {
                     <div className="vigilante-activo">
                         <img src={icono} alt="icono vigilante" className="icono-vigilante" />
                         <span className="nombre-vigilante">{vigilante.nombre}</span>
-                        
-                        <button className="boton-cerrar-turno" onClick={cerrarSesion}>
-                            <img src={iconoCerrarSesion} alt="cerrar sesión" />
-                            <span>Cambiar turno</span>
+
+                        <button
+                            className="boton-cerrar-turno"
+                            onClick={() => setMenuAbierto(!menuAbierto)}
+                        >
+                            <img src={menuHamburguesa} alt="menu" />
                         </button>
+
+                        {menuAbierto && (
+                            <div className="menu-flotante-home">
+                                <button onClick={cerrarSesion}>Salir del perfil</button>
+                                <button onClick={eliminarPerfil}>Eliminar perfil</button>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

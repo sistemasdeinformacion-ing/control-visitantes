@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ReporteVisitantes.css";
 import logo from "../assets/logo.png";
 import iconoCalendario from "../assets/icono-calendario.png";
@@ -11,6 +12,8 @@ const ReporteVisitantes = () => {
     const hoy = new Date().toISOString().split("T")[0];
     return hoy;
   });
+
+  const navigate = useNavigate();
 
   const [visitantes, setVisitantes] = useState([]);
   const logoRef = useRef(null);
@@ -31,10 +34,10 @@ const ReporteVisitantes = () => {
 
   const handleExportar = () => {
     const doc = new jsPDF();
-  const vigilanteData = JSON.parse(localStorage.getItem("vigilante"));
-  const vigilanteTexto = vigilanteData
-  ? `Vigilante: ${vigilanteData.nombre} - ${vigilanteData.documento}`
-  : "Vigilante: No identificado";
+    const vigilanteData = JSON.parse(localStorage.getItem("vigilante"));
+    const vigilanteTexto = vigilanteData
+      ? `Vigilante: ${vigilanteData.nombre} - ${vigilanteData.documento}`
+      : "Vigilante: No identificado";
 
 
     const img = logoRef.current;
@@ -104,7 +107,14 @@ const ReporteVisitantes = () => {
       <div className="reporte-box">
         <img src={logo} alt="Logo" style={{ display: "none" }} ref={logoRef} />
 
-        <img src={logo} alt="Logo" className="logo-reporte" />
+        <img
+          src={logo}
+          alt="Logo"
+          className="logo-reporte"
+          onClick={() => navigate("/home")}
+          style={{ cursor: "pointer" }}
+        />
+
         <h2>
           <span className="titulo-negro">REPORTES</span>{" "}
           <span className="titulo-azul">VISITANTES</span>
