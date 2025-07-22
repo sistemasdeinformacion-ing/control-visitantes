@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ControlVigilante.css";
 
@@ -9,43 +9,56 @@ import vigilanteMujer from "../assets/vigilante-mujer.png";
 import iconoAgregar from "../assets/icono-agregar.png";
 
 const ControlVigilante = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [vigilantes, setVigilantes] = useState([]);
 
-    const ingresarConVigilante = (nombre, genero) => {
-        const vigilante = { nombre, genero };
-        localStorage.setItem("vigilante", JSON.stringify(vigilante));
-        navigate("/home");
+  useEffect(() => {
+    const fetchVigilantes = async () => {
+      try {
+        const res = await fetch("http://localhost:3001/api/vigilantes");
+        const data = await res.json();
+        setVigilantes(data);
+      } catch (error) {
+        console.error("Error al cargar vigilantes:", error);
+      }
     };
 
+    fetchVigilantes();
+  }, []);
 
-    return (
-        <div className="control-container">
-            <img src={fondoAgua} alt="fondo superior" className="fondo-superior" />
-            <img src={logo} alt="logo" className="logo" />
+  const ingresarConVigilante = (vigilante) => {
+    localStorage.setItem("vigilante", JSON.stringify(vigilante));
+    navigate("/home");
+  };
 
-            <h1 className="titulo">VIGILANTE EN CONTROL</h1>
+  return (
+    <div className="control-container">
+      <img src={fondoAgua} alt="fondo superior" className="fondo-superior" />
+      <img src={logo} alt="logo" className="logo" />
 
-            <div className="botones">
-                <button onClick={() => ingresarConVigilante("Carlos Alberto Ruiz González", "hombre")}>
-                    <img className="icono-persona" src={vigilanteHombre} alt="vigilante hombre" />
-                    CARLOS ALBERTO RUIZ GONZÁLEZ
-                </button>
+      <h1 className="titulo">VIGILANTE EN CONTROL</h1>
 
-                <button onClick={() => ingresarConVigilante("Maria Sofía Gómez Pérez", "mujer")}>
-                    <img className="icono-persona" src={vigilanteMujer} alt="vigilante mujer" />
-                    MARIA SOFIA GOMEZ PÉREZ
-                </button>
+      <div className="botones">
+        {vigilantes.map((v) => (
+          <button key={v.documento} onClick={() => ingresarConVigilante(v)}>
+            <img
+              className="icono-persona"
+              src={v.genero === "mujer" ? vigilanteMujer : vigilanteHombre}
+              alt={`vigilante ${v.genero}`}
+            />
+            {v.nombre.toUpperCase()}
+          </button>
+        ))}
 
+        <button onClick={() => navigate("/registrar-vigilante")}>
+          <img className="icono-persona" src={iconoAgregar} alt="registrar" />
+          REGISTRAR VIGILANTE
+        </button>
+      </div>
 
-                <button onClick={() => navigate("/registrar-vigilante")}>
-                    <img className="icono-persona" src={iconoAgregar} alt="registrar" />
-                    REGISTRAR VIGILANTE
-                </button>
-            </div>
-
-            <img src={fondoAgua} alt="fondo inferior" className="fondo-inferior" />
-        </div>
-    );
+      <img src={fondoAgua} alt="fondo inferior" className="fondo-inferior" />
+    </div>
+  );
 };
 
 export default ControlVigilante;

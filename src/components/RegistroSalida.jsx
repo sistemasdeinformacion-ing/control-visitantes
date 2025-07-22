@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./RegistroSalida.css";
 import logo from "../assets/logo.png";
-import Mensaje from "./Mensaje"; // asegúrate de tener este componente
+import Mensaje from "./Mensaje"; 
 
 const RegistroSalida = () => {
   const [documento, setDocumento] = useState("");
   const [mensaje, setMensaje] = useState({ texto: "", tipo: "" });
 
-  // ⏱️ Ocultar mensaje después de 3 segundos
   useEffect(() => {
     if (mensaje.texto) {
       const timer = setTimeout(() => {

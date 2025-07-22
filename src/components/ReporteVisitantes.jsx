@@ -15,23 +15,27 @@ const ReporteVisitantes = () => {
   const [visitantes, setVisitantes] = useState([]);
   const logoRef = useRef(null);
 
-useEffect(() => {
-  const obtenerVisitantes = async () => {
-    try {
-      const respuesta = await fetch(`http://localhost:3001/api/visitantes/reporte?fecha=${fechaSeleccionada}`);
-      const data = await respuesta.json();
-      setVisitantes(data);
-    } catch (error) {
-      console.error("Error al cargar los visitantes:", error);
-    }
-  };
+  useEffect(() => {
+    const obtenerVisitantes = async () => {
+      try {
+        const respuesta = await fetch(`http://localhost:3001/api/visitantes/reporte?fecha=${fechaSeleccionada}`);
+        const data = await respuesta.json();
+        setVisitantes(data);
+      } catch (error) {
+        console.error("Error al cargar los visitantes:", error);
+      }
+    };
 
-  obtenerVisitantes();
-}, [fechaSeleccionada]);
+    obtenerVisitantes();
+  }, [fechaSeleccionada]);
 
   const handleExportar = () => {
     const doc = new jsPDF();
-    const vigilante = localStorage.getItem("vigilante") || "No identificado";
+  const vigilanteData = JSON.parse(localStorage.getItem("vigilante"));
+  const vigilanteTexto = vigilanteData
+  ? `Vigilante: ${vigilanteData.nombre} - ${vigilanteData.documento}`
+  : "Vigilante: No identificado";
+
 
     const img = logoRef.current;
     const canvas = document.createElement("canvas");
@@ -46,7 +50,8 @@ useEffect(() => {
     doc.text("Reporte de Visitantes", 50, 20);
     doc.setFontSize(12);
     doc.text(`Fecha: ${fechaSeleccionada}`, 50, 28);
-    doc.text(`Vigilante: ${vigilante}`, 50, 34);
+    doc.text(vigilanteTexto, 50, 34);
+
 
     if (visitantes.length === 0) {
       doc.text("No hay registros para esta fecha.", 14, 50);
@@ -58,6 +63,7 @@ useEffect(() => {
         "Funcionario",
         "Hora Entrada",
         "Hora Salida",
+        "Vigilante"
       ];
 
       const filas = visitantes.map((v) => [
@@ -67,6 +73,7 @@ useEffect(() => {
         v.funcionario,
         v.horaEntrada,
         v.horaSalida || "----",
+        v.nombreVigilante || "----"
       ]);
 
       autoTable(doc, {
@@ -81,6 +88,15 @@ useEffect(() => {
     }
 
     doc.save(`reporte_visitantes_${fechaSeleccionada}.pdf`);
+  };
+
+  const formatearFecha = (fechaStr) => {
+    if (!fechaStr) return "";
+    const fecha = new Date(fechaStr);
+    const dia = String(fecha.getDate()).padStart(2, "0");
+    const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+    const año = fecha.getFullYear();
+    return `${dia}-${mes}-${año}`;
   };
 
   return (
@@ -105,7 +121,7 @@ useEffect(() => {
           </div>
           <button className="btn-exportar" onClick={handleExportar}>
             <img src={iconoDescarga} alt="Descargar" className="icono-img" />
-          </button> 
+          </button>
         </div>
 
         <div className="cards-container">
@@ -116,7 +132,7 @@ useEffect(() => {
                 <p><strong>Documento:</strong> {v.documento}</p>
                 <p><strong>Dependencia:</strong> {v.dependencia}</p>
                 <p><strong>Funcionario a visitar:</strong> {v.funcionario}</p>
-                <p><strong>Fecha:</strong> {v.fecha}</p>
+                <p><strong>Fecha:</strong> {formatearFecha(v.fecha)}</p>
                 <p><strong>Hora Entrada:</strong> {v.horaEntrada}</p>
                 <p><strong>Hora Salida:</strong> {v.horaSalida}</p>
               </div>

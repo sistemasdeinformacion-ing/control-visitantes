@@ -7,8 +7,6 @@ import VisitantesTiempoReal from "./components/VisitantesTiempoReal";
 import ReporteVisitantes from "./components/ReporteVisitantes";
 import RegistroVigilante from "./components/RegistroVigilante";
 
-
-
 import ControlVigilante from "./components/ControlVigilante";
 
 function App() {

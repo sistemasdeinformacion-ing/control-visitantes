@@ -9,6 +9,7 @@ const RegistroEntrada = () => {
     const [dependencia, setDependencia] = useState("");
     const [funcionario, setFuncionario] = useState("");
     const [mensaje, setMensaje] = useState({ texto: "", tipo: "" });
+    const vigilante = JSON.parse(localStorage.getItem("vigilante"));
 
     useEffect(() => {
         if (mensaje.texto) {
@@ -33,6 +34,7 @@ const RegistroEntrada = () => {
             funcionario,
             fecha: fechaFormateada,
             horaEntrada: hora,
+            documentoVigilante: vigilante?.documento || "No identificado",
         };
 
         try {
