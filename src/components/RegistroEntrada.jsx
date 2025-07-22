@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./RegistroEntrada.css";
 import logo from "../assets/logo.png";
+import Mensaje from "./Mensaje";
 
 const RegistroEntrada = () => {
     const [documento, setDocumento] = useState("");
     const [nombre, setNombre] = useState("");
     const [dependencia, setDependencia] = useState("");
     const [funcionario, setFuncionario] = useState("");
+    const [mensaje, setMensaje] = useState({ texto: "", tipo: "" });
+
+    useEffect(() => {
+        if (mensaje.texto) {
+            const timer = setTimeout(() => {
+                setMensaje({ texto: "", tipo: "" });
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [mensaje]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,33 +36,32 @@ const RegistroEntrada = () => {
         };
 
         try {
-            const respuesta = await fetch  ("http://localhost:3001/api/visitantes/entrada", {
+            const respuesta = await fetch("http://localhost:3001/api/visitantes/entrada", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(nuevoVisitante),
             });
 
-            if (!respuesta.ok) {
-                throw new Error("Error al registrar entrada");
-            }
+            if (!respuesta.ok) throw new Error("Error al registrar entrada");
 
-            alert("Entrada registrada correctamente");
+            setMensaje({ texto: "Entrada registrada correctamente", tipo: "exito" });
             setDocumento("");
             setNombre("");
             setDependencia("");
             setFuncionario("");
         } catch (error) {
             console.error("Error:", error);
-            alert("Error al registrar la entrada");
+            setMensaje({ texto: "Error al registrar la entrada", tipo: "error" });
         }
     };
-
 
     return (
         <div className="entrada-container">
             <div className="entrada-form">
                 <img src={logo} alt="Logo" className="logo-form" />
                 <h2><span className="titulo-negro">REGISTRO</span> <span className="titulo-azul">ENTRADA</span></h2>
+
+                {mensaje.texto && <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />}
 
                 <form onSubmit={handleSubmit}>
                     <label>Documento de Identidad:</label>
@@ -68,7 +78,7 @@ const RegistroEntrada = () => {
                         type="button"
                         onClick={async () => {
                             if (!documento.trim()) {
-                                alert("Por favor ingresa un número de documento");
+                                setMensaje({ texto: "Por favor ingresa un número de documento", tipo: "error" });
                                 return;
                             }
 
@@ -80,20 +90,18 @@ const RegistroEntrada = () => {
                                     setDependencia(data.dependencia);
                                     setFuncionario(data.funcionario);
                                 } else if (response.status === 404) {
-                                    alert("Visitante no encontrado");
+                                    setMensaje({ texto: "Visitante no encontrado", tipo: "error" });
                                 } else {
                                     throw new Error("Error al buscar visitante");
                                 }
                             } catch (error) {
                                 console.error("Error:", error);
-                                alert("Error al buscar el visitante");
+                                setMensaje({ texto: "Error al buscar el visitante", tipo: "error" });
                             }
                         }}
                     >
                         BUSCAR
                     </button>
-
-
 
                     <label>Nombre:</label>
                     <input

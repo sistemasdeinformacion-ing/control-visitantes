@@ -17,7 +17,6 @@ const Home = () => {
                 const parsed = JSON.parse(stored);
                 setVigilante(parsed);
             } catch {
-                // En caso de que sea solo texto antiguo
                 setVigilante({ nombre: stored, genero: null });
             }
         }
