@@ -81,7 +81,7 @@ const Home = () => {
 
             <div className="botones">
                 <button onClick={irARegistroEntrada}>REGISTRAR ENTRADA DE VISITANTE</button>
-                <button onClick={irARegistroSalida}>REGISTRAR SALIDA DE VISITANTE</button>
+                <button onClick={irARegistroSalida}>REGISTRAR SALIDA DEL VISITANTE</button>
                 <button onClick={irATiempoReal}>VISUALIZAR VISITANTES EN TIEMPO REAL</button>
                 <button onClick={irAReportes}>GENERAR REPORTES DE VISITANTES</button>
             </div>
