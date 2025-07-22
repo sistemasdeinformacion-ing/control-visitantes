@@ -5,6 +5,7 @@ import fondoAgua from '../assets/fondo-agua.png';
 import logo from "../assets/logo.png";
 import vigilanteHombre from "../assets/vigilante-hombre.png";
 import vigilanteMujer from "../assets/vigilante-mujer.png";
+import iconoCerrarSesion from "../assets/cerrar-sesion.png"; // NUEVO
 
 const Home = () => {
     const navigate = useNavigate();
@@ -27,6 +28,11 @@ const Home = () => {
     const irATiempoReal = () => navigate("/tiempo-real");
     const irAReportes = () => navigate("/reportes");
 
+    const cerrarSesion = () => {
+        localStorage.removeItem("vigilante");
+        navigate("/"); // redirige al panel de control del vigilante
+    };
+
     const icono = vigilante?.genero === "mujer" ? vigilanteMujer : vigilanteHombre;
 
     return (
@@ -39,6 +45,11 @@ const Home = () => {
                     <div className="vigilante-activo">
                         <img src={icono} alt="icono vigilante" className="icono-vigilante" />
                         <span className="nombre-vigilante">{vigilante.nombre}</span>
+                        
+                        <button className="boton-cerrar-turno" onClick={cerrarSesion}>
+                            <img src={iconoCerrarSesion} alt="cerrar sesión" />
+                            <span>Cambiar turno</span>
+                        </button>
                     </div>
                 )}
             </div>

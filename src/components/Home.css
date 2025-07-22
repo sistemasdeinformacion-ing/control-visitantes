@@ -103,3 +103,27 @@
   font-weight: bold;
   color: #162144;
 }
+
+.vigilante-activo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.boton-cerrar-turno {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.boton-cerrar-turno img {
+  width: 20px;
+  height: 20px;
+}
