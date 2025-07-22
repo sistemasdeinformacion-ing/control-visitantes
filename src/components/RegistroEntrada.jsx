@@ -25,7 +25,7 @@ const RegistroEntrada = () => {
         };
 
         try {
-            const respuesta = await fetch("http://localhost:3001/api/visitantes/entrada", {
+            const respuesta = await fetch  ("http://localhost:3001/api/visitantes/entrada", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(nuevoVisitante),
