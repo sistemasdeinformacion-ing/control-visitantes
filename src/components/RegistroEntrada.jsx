@@ -28,7 +28,7 @@ const RegistroEntrada = () => {
 
         const fecha = new Date();
         const fechaFormateada = fecha.toISOString().split("T")[0];
-        const hora = fecha.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        const hora = fecha.toTimeString().split(" ")[0]; 
 
         const nuevoVisitante = {
             documento,

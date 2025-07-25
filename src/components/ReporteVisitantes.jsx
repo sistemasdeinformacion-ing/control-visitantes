@@ -99,7 +99,7 @@ const ReporteVisitantes = () => {
     const dia = String(fecha.getDate()).padStart(2, "0");
     const mes = String(fecha.getMonth() + 1).padStart(2, "0");
     const año = fecha.getFullYear();
-    return `${dia}-${mes}-${año}`;
+    return ``;
   };
 
   return (
@@ -148,7 +148,7 @@ const ReporteVisitantes = () => {
               </div>
             ))
           ) : (
-            <p style={{ marginTop: "30px" }}>No hay registros para esta fecha.</p>
+            <p className="no-reporte" style={{ marginTop: "30px" }}>No hay registros para esta fecha.</p>
           )}
         </div>
       </div>

@@ -32,10 +32,7 @@ const RegistroSalida = () => {
 
     const now = new Date();
     const fechaSalida = now.toISOString().split("T")[0];
-    const horaSalida = now.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+    const horaSalida = now.toTimeString().split(" ")[0];
 
     const registroSalida = {
       documento,

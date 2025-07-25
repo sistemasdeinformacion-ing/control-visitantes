@@ -72,3 +72,31 @@ input {
 button:hover {
   background: linear-gradient(to bottom, #dbeeff, #a2c6e2);
 }
+
+@media screen and (min-width: 768px) {
+
+.salida-form{
+  max-width: 500px;
+  height: 380px;
+}
+
+form{
+  font-size: 20px;
+}
+
+input {
+  font-size: 18px;
+}
+
+.titulo-negro {
+  font-size: 30px;
+}
+
+.titulo-azul {
+  font-size: 30px;
+}  
+
+.submit {
+  font-size: 18px;
+}
+}

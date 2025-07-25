@@ -71,7 +71,7 @@ const VisitantesTiempoReal = () => {
               </div>
             ))
           ) : (
-            <p style={{ marginTop: "30px" }}>No hay visitantes en este momento.</p>
+            <p className="no-visitantes" style={{ marginTop: "30px" }}>No hay visitantes en este momento.</p>
           )}
         </div>
       </div>

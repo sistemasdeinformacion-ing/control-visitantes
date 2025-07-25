@@ -68,3 +68,23 @@
 .botones button:hover {
   background-color: #c1dcf3;
 }
+
+@media screen and (min-width: 768px) {
+
+  .titulo {
+    font-size: 36px;
+    margin-top: 120px;
+  }
+
+  .botones button {
+    width: 80%;
+    padding: 15px;
+    font-size: 19px;
+  }
+
+  .botones {
+  display: flex;
+  flex-direction: row;
+}
+  
+}

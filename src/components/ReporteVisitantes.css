@@ -94,3 +94,22 @@
   width: 80px;
   height: 45px;
 }
+
+@media screen and (min-width: 768px) {
+
+.titulo-negro {
+  font-size: 30px;
+}
+
+.titulo-azul {
+  font-size: 30px;
+}  
+
+.no-reporte{
+  font-size: 23px;
+}
+
+.cards-container{
+  font-size: 22px;
+}
+}

@@ -60,3 +60,23 @@
   border-radius: 10px;
   background-color: #f9f9f9;
 }
+
+
+@media screen and (min-width: 768px) {
+
+.titulo-negro {
+  font-size: 30px;
+}
+
+.titulo-azul {
+  font-size: 30px;
+}  
+
+.no-visitantes{
+  font-size: 23px;
+}
+
+.cards-container{
+  font-size: 22px;
+}
+}
