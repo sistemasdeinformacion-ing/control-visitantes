@@ -8,6 +8,8 @@ import vigilanteHombre from "../assets/vigilante-hombre.png";
 import vigilanteMujer from "../assets/vigilante-mujer.png";
 import menuHamburguesa from "../assets/menu.png";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Home = () => {
     const navigate = useNavigate();
     const [vigilante, setVigilante] = useState(null);
@@ -37,7 +39,7 @@ const Home = () => {
 
     const eliminarPerfil = async () => {
         try {
-            await fetch(`http://localhost:3001/api/vigilantes/${vigilante.documento}`, {
+            await fetch(`${API_URL}/api/vigilantes/${vigilante.documento}`, {
                 method: "DELETE",
             });
             localStorage.removeItem("vigilante");
