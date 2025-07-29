@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegistroEntrada.css";
 import logo from "../assets/logo.png";
-import Mensaje from "./Mensaje";
+import Mensaje from "./Mensaje"; 
+
+console.log("VITE_API_URL:", API_URL);
 
 const API_URL = import.meta.env.VITE_API_URL;
 
