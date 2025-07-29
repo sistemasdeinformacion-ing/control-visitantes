@@ -20,6 +20,15 @@ const VisitantesTiempoReal = () => {
     obtenerVisitantes();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      obtenerVisitantes();
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   const navigate = useNavigate();
 
   const formatearHora12 = (hora) => {
