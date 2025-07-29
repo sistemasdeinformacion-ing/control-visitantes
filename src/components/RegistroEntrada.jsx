@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./RegistroEntrada.css";
 import logo from "../assets/logo.png";
 import Mensaje from "./Mensaje";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const RegistroEntrada = () => {
     const [documento, setDocumento] = useState("");
@@ -21,14 +23,14 @@ const RegistroEntrada = () => {
         }
     }, [mensaje]);
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const fecha = new Date();
         const fechaFormateada = fecha.toISOString().split("T")[0];
-        const hora = fecha.toTimeString().split(" ")[0]; 
+        const hora = fecha.toTimeString().split(" ")[0];
 
         const nuevoVisitante = {
             documento,
@@ -41,7 +43,7 @@ const RegistroEntrada = () => {
         };
 
         try {
-            const respuesta = await fetch("http://localhost:3001/api/visitantes/entrada", {
+            const respuesta = await fetch(`${API_URL}/api/visitantes/entrada`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(nuevoVisitante),
@@ -60,6 +62,30 @@ const RegistroEntrada = () => {
         }
     };
 
+    const buscarVisitante = async () => {
+        if (!documento.trim()) {
+            setMensaje({ texto: "Por favor ingresa un número de documento", tipo: "error" });
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/api/visitantes/buscar/${documento}`);
+            if (response.ok) {
+                const data = await response.json();
+                setNombre(data.nombre);
+                setDependencia(data.dependencia);
+                setFuncionario(data.funcionario);
+            } else if (response.status === 404) {
+                setMensaje({ texto: "Visitante no encontrado", tipo: "error" });
+            } else {
+                throw new Error("Error al buscar visitante");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            setMensaje({ texto: "Error al buscar el visitante", tipo: "error" });
+        }
+    };
+
     return (
         <div className="entrada-container">
             <div className="entrada-form">
@@ -71,7 +97,10 @@ const RegistroEntrada = () => {
                     style={{ cursor: "pointer" }}
                 />
 
-                <h2><span className="titulo-negro">REGISTRO</span> <span className="titulo-azul">ENTRADA</span></h2>
+                <h2>
+                    <span className="titulo-negro">REGISTRO</span>{" "}
+                    <span className="titulo-azul">ENTRADA</span>
+                </h2>
 
                 {mensaje.texto && <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />}
 
@@ -85,33 +114,7 @@ const RegistroEntrada = () => {
                         required
                     />
 
-                    <button
-                        className="search"
-                        type="button"
-                        onClick={async () => {
-                            if (!documento.trim()) {
-                                setMensaje({ texto: "Por favor ingresa un número de documento", tipo: "error" });
-                                return;
-                            }
-
-                            try {
-                                const response = await fetch(`http://localhost:3001/api/visitantes/buscar/${documento}`);
-                                if (response.ok) {
-                                    const data = await response.json();
-                                    setNombre(data.nombre);
-                                    setDependencia(data.dependencia);
-                                    setFuncionario(data.funcionario);
-                                } else if (response.status === 404) {
-                                    setMensaje({ texto: "Visitante no encontrado", tipo: "error" });
-                                } else {
-                                    throw new Error("Error al buscar visitante");
-                                }
-                            } catch (error) {
-                                console.error("Error:", error);
-                                setMensaje({ texto: "Error al buscar el visitante", tipo: "error" });
-                            }
-                        }}
-                    >
+                    <button className="search" type="button" onClick={buscarVisitante}>
                         BUSCAR
                     </button>
 
@@ -125,7 +128,11 @@ const RegistroEntrada = () => {
                     />
 
                     <label>Dependencia:</label>
-                    <select value={dependencia} onChange={(e) => setDependencia(e.target.value)} required>
+                    <select
+                        value={dependencia}
+                        onChange={(e) => setDependencia(e.target.value)}
+                        required
+                    >
                         <option value="" disabled>Seleccionar</option>
                         <option value="SUBGERENCIA ADMINISTRATIVA Y FINANCIERA">SUBGERENCIA ADMINISTRATIVA Y FINANCIERA</option>
                         <option value="SECRETARÍA GENERAL">SECRETARÍA GENERAL</option>
