@@ -1,47 +1,73 @@
-.landing {
+.pantalla-principal {
   height: 100vh;
+  width: 100%;
+  position: relative;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: white;
-  font-family: "Segoe UI", sans-serif;
+  justify-content: center;
+  overflow: hidden;
   text-align: center;
-  padding: 20px;
 }
 
-.landing-logo {
-  width: 140px;
-  margin-bottom: 30px;
+.logo-principal {
+  width: 120px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
 }
 
-.landing-titulo {
-  font-size: 32px;
-  color: #003366;
-  margin-bottom: 10px;
+.titulo-principal h1 {
+  margin: 0;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
-.landing-titulo .azul {
-  color: #007bff;
+.control-texto {
+  color: #1d2a57;
 }
 
-.landing-subtitulo {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 40px;
+.de-texto {
+  color: #1d2a57;
+  font-weight: 300;
+  margin-left: 10px;
 }
 
-.landing-boton {
-  padding: 12px 30px;
+.visitantes-texto {
+  font-size: 3rem;
+  color: #0071ce;
   font-weight: bold;
-  background: linear-gradient(to bottom, #ffffff, #cccccc);
+}
+
+.subtitulo {
+  margin-top: 10px;
+  color: #1d2a57;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.boton-ingresar {
+  margin-top: 2rem;
+  background: linear-gradient(to right, #e0e0e0, #ffffff);
   border: none;
-  border-radius: 25px;
+  padding: 15px 40px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 30px;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s;
 }
 
-.landing-boton:hover {
+.boton-ingresar:hover {
   transform: scale(1.05);
+}
+
+.fondo-principal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
 }

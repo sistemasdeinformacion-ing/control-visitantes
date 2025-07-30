@@ -1,26 +1,30 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Landing.css";
+import "./PantallaPrincipal.css";
+
+import fondoPrincipal from "../assets/fondo-principal.png";
 import logo from "../assets/logo.png";
 
 const Landing = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="landing">
-      <img src={logo} alt="logo" className="landing-logo" />
+    <div className="pantalla-principal">
+      <img src={logo} alt="Logo EQQ" className="logo-principal" />
 
-      <h1 className="landing-titulo">
-        <span>CONTROL</span> <span className="azul">DE VISITANTES</span>
-      </h1>
+      <div className="titulo-principal">
+        <h1>
+          <span className="control-texto">CONTROL</span> <span className="de-texto">DE</span>
+        </h1>
+        <h1 className="visitantes-texto">VISITANTES</h1>
+        <p className="subtitulo">EMPRESAS PUBLICAS DEL QUINDIO SA ESP</p>
+      </div>
 
-      <p className="landing-subtitulo">
-        EMPRESAS PUBLICAS DEL QUINDIO SA ESP
-      </p>
-
-      <button className="landing-boton" onClick={() => navigate("/control-vigilante")}>
+      <button className="boton-ingresar" onClick={() => navigate("/vigilantes")}>
         INGRESAR
       </button>
+
+      <img src={fondoPrincipal} alt="Fondo Curvo" className="fondo-principal" />
     </div>
   );
 };
