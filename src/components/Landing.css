@@ -1,0 +1,47 @@
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.landing-logo {
+  width: 140px;
+  margin-bottom: 30px;
+}
+
+.landing-titulo {
+  font-size: 32px;
+  color: #003366;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.landing-titulo .azul {
+  color: #007bff;
+}
+
+.landing-subtitulo {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.landing-boton {
+  padding: 12px 30px;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #ffffff, #cccccc);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.landing-boton:hover {
+  transform: scale(1.05);
+}
