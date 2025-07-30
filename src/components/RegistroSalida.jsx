@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./RegistroSalida.css";
 import logo from "../assets/logo.png";
 import Mensaje from "./Mensaje";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const RegistroSalida = () => {
   const [documento, setDocumento] = useState("");
   const [mensaje, setMensaje] = useState({ texto: "", tipo: "" });
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (mensaje.texto) {
@@ -16,8 +19,6 @@ const RegistroSalida = () => {
       return () => clearTimeout(timer);
     }
   }, [mensaje]);
-
-  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ const RegistroSalida = () => {
     };
 
     try {
-      const respuesta = await fetch("http://localhost:3001/api/visitantes/salida", {
+      const respuesta = await fetch(`${API_URL}/api/visitantes/salida`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(registroSalida),
