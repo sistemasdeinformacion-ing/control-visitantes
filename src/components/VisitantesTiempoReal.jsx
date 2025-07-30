@@ -23,8 +23,8 @@ const VisitantesTiempoReal = () => {
   };
 
   useEffect(() => {
-    obtenerVisitantes(); // Cargar inmediatamente al montar
-    const interval = setInterval(obtenerVisitantes, 10000); // Refrescar cada 10 segundos
+    obtenerVisitantes();
+    const interval = setInterval(obtenerVisitantes, 10000); 
     return () => clearInterval(interval);
   }, []);
 
