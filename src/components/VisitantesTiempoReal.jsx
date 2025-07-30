@@ -3,40 +3,41 @@ import "./VisitantesTiempoReal.css";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const VisitantesTiempoReal = () => {
   const [visitantes, setVisitantes] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const obtenerVisitantes = async () => {
-      try {
-        const respuesta = await fetch("http://localhost:3001/api/visitantes/activos");
-        const data = await respuesta.json();
-        setVisitantes(data);
-      } catch (error) {
-        console.error("Error al cargar visitantes en tiempo real:", error);
+  const obtenerVisitantes = async () => {
+    try {
+      const respuesta = await fetch(`${API_URL}/api/visitantes/activos`);
+      if (!respuesta.ok) {
+        throw new Error("No se pudo obtener la lista de visitantes");
       }
-    };
-
-    obtenerVisitantes();
-  }, []);
+      const data = await respuesta.json();
+      setVisitantes(data);
+    } catch (error) {
+      console.error("Error al cargar visitantes en tiempo real:", error);
+    }
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      obtenerVisitantes();
-    }, 10000);
-
+    obtenerVisitantes(); // Cargar inmediatamente al montar
+    const interval = setInterval(obtenerVisitantes, 10000); // Refrescar cada 10 segundos
     return () => clearInterval(interval);
   }, []);
-
-
-  const navigate = useNavigate();
 
   const formatearHora12 = (hora) => {
     if (!hora) return "";
     const [horas, minutos] = hora.split(":");
     const fecha = new Date();
     fecha.setHours(parseInt(horas), parseInt(minutos));
-    return fecha.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+    return fecha.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
   const formatearFecha = (fechaStr) => {
@@ -48,10 +49,7 @@ const VisitantesTiempoReal = () => {
     return `${dia}-${mes}-${año}`;
   };
 
-
   return (
-
-
     <div className="tiempo-real-container">
       <div className="tiempo-real-box">
         <img
@@ -80,7 +78,9 @@ const VisitantesTiempoReal = () => {
               </div>
             ))
           ) : (
-            <p className="no-visitantes" style={{ marginTop: "30px" }}>No hay visitantes en este momento.</p>
+            <p className="no-visitantes" style={{ marginTop: "30px" }}>
+              No hay visitantes en este momento.
+            </p>
           )}
         </div>
       </div>
