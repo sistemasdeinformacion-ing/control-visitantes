@@ -40,7 +40,7 @@ const ReporteVisitantes = () => {
     const doc = new jsPDF();
     const vigilanteData = JSON.parse(localStorage.getItem("vigilante"));
     const vigilanteTexto = vigilanteData
-      ? `Vigilante: ${vigilanteData.nombre}`
+      ? `Vigilante: ${vigilanteData.nombre} - ${vigilanteData.documento}`
       : "Vigilante: No identificado";
 
     const img = logoRef.current;
@@ -57,6 +57,7 @@ const ReporteVisitantes = () => {
     doc.setFontSize(12);
     doc.text(`Fecha: ${fechaSeleccionada}`, 50, 28);
     doc.text(vigilanteTexto, 50, 34);
+    doc.text(`Total de visitantes: ${visitantes.length}`, 50, 40); // 👈 NUEVA LÍNEA
 
     if (visitantes.length === 0) {
       doc.text("No hay registros para esta fecha.", 14, 50);
