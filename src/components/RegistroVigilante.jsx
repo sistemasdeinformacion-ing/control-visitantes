@@ -65,7 +65,7 @@ const RegistroVigilante = () => {
                 body: JSON.stringify(infoVigilante),
             });
 
-            const data = await res.json(); // 👈 esto te da acceso al detalle
+            const data = await res.json(); ç
 
             if (!res.ok) throw new Error(data.detalle || "Error al registrar vigilante");
 
