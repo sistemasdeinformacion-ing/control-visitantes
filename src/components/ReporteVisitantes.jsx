@@ -7,28 +7,32 @@ import iconoDescarga from "../assets/icono-descarga.png";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ReporteVisitantes = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(() => {
     const hoy = new Date().toISOString().split("T")[0];
     return hoy;
   });
 
-  const navigate = useNavigate();
-
   const [visitantes, setVisitantes] = useState([]);
   const logoRef = useRef(null);
+  const navigate = useNavigate();
+
+  const obtenerVisitantes = async () => {
+    try {
+      const respuesta = await fetch(`${API_URL}/api/visitantes/reporte?fecha=${fechaSeleccionada}`);
+      if (!respuesta.ok) {
+        throw new Error("Error al obtener los datos del reporte");
+      }
+      const data = await respuesta.json();
+      setVisitantes(data);
+    } catch (error) {
+      console.error("Error al cargar los visitantes:", error);
+    }
+  };
 
   useEffect(() => {
-    const obtenerVisitantes = async () => {
-      try {
-        const respuesta = await fetch(`http://localhost:3001/api/visitantes/reporte?fecha=${fechaSeleccionada}`);
-        const data = await respuesta.json();
-        setVisitantes(data);
-      } catch (error) {
-        console.error("Error al cargar los visitantes:", error);
-      }
-    };
-
     obtenerVisitantes();
   }, [fechaSeleccionada]);
 
@@ -38,7 +42,6 @@ const ReporteVisitantes = () => {
     const vigilanteTexto = vigilanteData
       ? `Vigilante: ${vigilanteData.nombre} - ${vigilanteData.documento}`
       : "Vigilante: No identificado";
-
 
     const img = logoRef.current;
     const canvas = document.createElement("canvas");
@@ -55,7 +58,6 @@ const ReporteVisitantes = () => {
     doc.text(`Fecha: ${fechaSeleccionada}`, 50, 28);
     doc.text(vigilanteTexto, 50, 34);
 
-
     if (visitantes.length === 0) {
       doc.text("No hay registros para esta fecha.", 14, 50);
     } else {
@@ -66,7 +68,7 @@ const ReporteVisitantes = () => {
         "Funcionario",
         "Hora Entrada",
         "Hora Salida",
-        "Vigilante"
+        "Vigilante",
       ];
 
       const filas = visitantes.map((v) => [
@@ -76,7 +78,7 @@ const ReporteVisitantes = () => {
         v.funcionario,
         v.horaEntrada,
         v.horaSalida || "----",
-        v.nombreVigilante || "----"
+        v.nombreVigilante || "----",
       ]);
 
       autoTable(doc, {
@@ -144,11 +146,13 @@ const ReporteVisitantes = () => {
                 <p><strong>Funcionario a visitar:</strong> {v.funcionario}</p>
                 <p><strong>Fecha:</strong> {formatearFecha(v.fecha)}</p>
                 <p><strong>Hora Entrada:</strong> {v.horaEntrada}</p>
-                <p><strong>Hora Salida:</strong> {v.horaSalida}</p>
+                <p><strong>Hora Salida:</strong> {v.horaSalida || "----"}</p>
               </div>
             ))
           ) : (
-            <p className="no-reporte" style={{ marginTop: "30px" }}>No hay registros para esta fecha.</p>
+            <p className="no-reporte" style={{ marginTop: "30px" }}>
+              No hay registros para esta fecha.
+            </p>
           )}
         </div>
       </div>
