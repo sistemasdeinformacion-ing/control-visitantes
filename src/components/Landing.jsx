@@ -20,7 +20,7 @@ const Landing = () => {
         <p className="subtitulo">EMPRESAS PUBLICAS DEL QUINDIO SA ESP</p>
       </div>
 
-      <button className="boton-ingresar" onClick={() => navigate("/vigilantes")}>
+      <button className="boton-ingresar" onClick={() => navigate("/control-vigilante")}>
         INGRESAR
       </button>
 
