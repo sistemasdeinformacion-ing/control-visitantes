@@ -27,12 +27,14 @@
 
 .control-texto {
   color: #1d2a57;
+  z-index: 2;
 }
 
 .de-texto {
   color: #1d2a57;
   font-weight: 300;
   margin-left: 10px;
+  z-index: 2;
 }
 
 .visitantes-texto {
