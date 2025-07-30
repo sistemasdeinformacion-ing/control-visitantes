@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./PantallaPrincipal.css";
+import "./Landing.css";
 
 import fondoPrincipal from "../assets/fondo-principal.png";
 import logo from "../assets/logo.png";
@@ -10,7 +10,7 @@ const Landing = () => {
 
   return (
     <div className="pantalla-principal">
-      <img src={logo} alt="Logo EQQ" className="logo-principal" />
+      <img src={logo} alt="Logo EPQ" className="logo-principal" />
 
       <div className="titulo-principal">
         <h1>
