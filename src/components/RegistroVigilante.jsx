@@ -35,9 +35,32 @@ const RegistroVigilante = () => {
       return;
     }
 
-    const infoVigilante = { documento, nombre, genero };
+    if (!/^\d+$/.test(documento)) {
+      setMensaje({
+        texto: "El documento debe contener solo números",
+        tipo: "error",
+      });
+      return;
+    }
 
     try {
+      // Verificar si el documento ya está registrado
+      const resVerificacion = await fetch(`${API_URL}/api/vigilantes`);
+      const vigilantes = await resVerificacion.json();
+
+      const yaRegistrado = vigilantes.some(v => String(v.documento) === documento);
+
+      if (yaRegistrado) {
+        setMensaje({
+          texto: "Este número de documento ya está registrado",
+          tipo: "error",
+        });
+        return;
+      }
+
+      // Registrar vigilante
+      const infoVigilante = { documento, nombre, genero };
+
       const res = await fetch(`${API_URL}/api/vigilantes/registrar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
