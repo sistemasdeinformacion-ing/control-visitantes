@@ -22,6 +22,7 @@
   margin: 0;
   font-size: 2.5rem;
   font-weight: bold;
+  z-index: 2;
 }
 
 .control-texto {
@@ -38,6 +39,7 @@
   font-size: 3rem;
   color: #0071ce;
   font-weight: bold;
+  z-index: 2;
 }
 
 .subtitulo {
@@ -45,6 +47,7 @@
   color: #1d2a57;
   font-size: 0.9rem;
   font-weight: 500;
+  z-index: 2;
 }
 
 .boton-ingresar {
