@@ -40,7 +40,7 @@ const ReporteVisitantes = () => {
     const doc = new jsPDF();
     const vigilanteData = JSON.parse(localStorage.getItem("vigilante"));
     const vigilanteTexto = vigilanteData
-      ? `Vigilante: ${vigilanteData.nombre} - ${vigilanteData.documento}`
+      ? `Vigilante: ${vigilanteData.nombre}`
       : "Vigilante: No identificado";
 
     const img = logoRef.current;
