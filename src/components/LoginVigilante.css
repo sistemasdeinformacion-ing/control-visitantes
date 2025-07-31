@@ -1,9 +1,12 @@
 .login-container {
-  background: linear-gradient(to bottom,#92beff, #193785);
+  background: linear-gradient(to bottom, #92beff, #193785);
   min-height: 100vh;
-  padding-top: 60px;
-  text-align: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   position: relative;
+  padding-top: 0; 
+  text-align: center;
 }
 
 .logo {
@@ -20,11 +23,11 @@
 .login-card {
   background: white;
   width: 300px;
-  margin: auto;
   padding: 30px 20px;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
+
 
 .login-card h2 {
   font-family: "Georgia", serif;
