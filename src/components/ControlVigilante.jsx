@@ -14,51 +14,47 @@ const ControlVigilante = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-const fetchVigilantes = async () => {
-  try {
-    const API_URL = "https://backend-fe7f.onrender.com";
-    const res = await fetch(`${API_URL}/api/vigilantes`);
+    const fetchVigilantes = async () => {
+      try {
+        const API_URL = "https://backend-fe7f.onrender.com";
+        const res = await fetch(`${API_URL}/api/vigilantes`);
 
-    if (!res.ok) {
-      throw new Error("Error en la respuesta del servidor");
-    }
+        if (!res.ok) {
+          throw new Error("Error en la respuesta del servidor");
+        }
 
-    const data = await res.json();
-    console.log("Respuesta del backend:", data);
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setVigilantes(data);
+        } else {
+          setVigilantes([]);
+          setError("La respuesta no es una lista válida.");
+        }
+      } catch (err) {
+        console.error("Error al cargar vigilantes:", err);
+        setError("No se pudo conectar al servidor.");
+        setVigilantes([]);
+      }
+    };
 
-    if (Array.isArray(data)) {
-      setVigilantes(data);
-    } else {
-      setVigilantes([]);
-      setError("La respuesta no es una lista válida.");
-      console.error("La respuesta no es una lista:", data);
-    }
-  } catch (err) {
-    console.error("Error al cargar vigilantes:", err);
-    setError("No se pudo conectar al servidor.");
-    setVigilantes([]);
-  }
-};
     fetchVigilantes();
   }, []);
 
-  const ingresarConVigilante = (vigilante) => {
-    localStorage.setItem("vigilante", JSON.stringify(vigilante));
-    navigate("/home");
+  const redirigirALogin = (vigilante) => {
+    navigate(`/login-vigilante/${vigilante.documento}`, { state: { vigilante } });
   };
 
   return (
     <div className="control-container">
       <img src={fondoAgua} alt="fondo superior" className="fondo-superior" />
       <img src={logo} alt="logo" className="logo" />
-
       <h1 className="titulo">VIGILANTE EN CONTROL</h1>
 
       <div className="botones">
         {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
         {vigilantes.map((v) => (
-          <button key={v.documento} onClick={() => ingresarConVigilante(v)}>
+          <button key={v.documento} onClick={() => redirigirALogin(v)}>
             <img
               className="icono-persona"
               src={v.genero === "mujer" ? vigilanteMujer : vigilanteHombre}
