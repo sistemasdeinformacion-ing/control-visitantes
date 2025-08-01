@@ -12,6 +12,9 @@ const RegistroVigilante = () => {
     const [documento, setDocumento] = useState("");
     const [nombre, setNombre] = useState("");
     const [genero, setGenero] = useState(null);
+    const [usuario, setUsuario] = useState("");
+    const [contrasena, setContrasena] = useState("");
+
     const [mensaje, setMensaje] = useState({ texto: "", tipo: "" });
     const navigate = useNavigate();
 
@@ -43,6 +46,11 @@ const RegistroVigilante = () => {
             return;
         }
 
+        if (!usuario || !contrasena) {
+            setMensaje({ texto: "Usuario y contraseña son obligatorios", tipo: "error" });
+            return;
+        }
+
         try {
             const resVerificacion = await fetch(`${API_URL}/api/vigilantes`);
             const vigilantes = await resVerificacion.json();
@@ -57,7 +65,7 @@ const RegistroVigilante = () => {
                 return;
             }
 
-            const infoVigilante = { documento, nombre, genero };
+            const infoVigilante = { documento, nombre, genero, usuario, contrasena };
 
             const res = await fetch(`${API_URL}/api/vigilantes/registrar`, {
                 method: "POST",
@@ -68,9 +76,6 @@ const RegistroVigilante = () => {
             const data = await res.json();
 
             if (!res.ok) throw new Error(data.detalle || "Error al registrar vigilante");
-
-
-            if (!res.ok) throw new Error("Error al registrar vigilante");
 
             localStorage.setItem("vigilante", JSON.stringify(infoVigilante));
             navigate("/home");
@@ -112,6 +117,22 @@ const RegistroVigilante = () => {
                         placeholder="Nombre completo"
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
+                    />
+
+                    <label>Usuario:</label>
+                    <input
+                        type="text"
+                        placeholder="Nombre de usuario"
+                        value={usuario}
+                        onChange={(e) => setUsuario(e.target.value)}
+                    />
+
+                    <label>Contraseña:</label>
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={contrasena}
+                        onChange={(e) => setContrasena(e.target.value)}
                     />
 
                     <label>Seleccione su ícono:</label>
