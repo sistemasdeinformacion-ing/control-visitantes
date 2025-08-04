@@ -1,0 +1,51 @@
+.login-admin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #92beff, #193785);
+}
+
+.logo-login-admin {
+  width: 90px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  border: 2px solid #00167a;
+}
+
+.formulario-login-admin {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 280px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.titulo-login-admin {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #002f6c;
+}
+
+.formulario-login-admin input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formulario-login-admin button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to bottom, #f0f0f0, #bbb);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}

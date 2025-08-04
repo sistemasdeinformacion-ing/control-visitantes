@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ControlVigilante.css";
+import perfilAdministrador from "../assets/perfil-administrador.png";
 
 import logo from "../assets/logo.png";
 import fondoAgua from "../assets/fondo-agua.png";
@@ -48,6 +49,12 @@ const ControlVigilante = () => {
     <div className="control-container">
       <img src={fondoAgua} alt="fondo superior" className="fondo-superior" />
       <img src={logo} alt="logo" className="logo" />
+
+      <div className="perfil-admin" onClick={() => navigate("/login-admin")}>
+        <img src={perfilAdministrador} alt="Perfil Administrador" className="icono-admin" />
+        <p className="texto-admin">ADMINISTRADOR</p>
+      </div>
+
       <h1 className="titulo">VIGILANTE EN CONTROL</h1>
 
       <div className="botones">

@@ -7,8 +7,10 @@ import VisitantesTiempoReal from "./components/VisitantesTiempoReal";
 import ReporteVisitantes from "./components/ReporteVisitantes";
 import RegistroVigilante from "./components/RegistroVigilante";
 import ControlVigilante from "./components/ControlVigilante";
-import LoginVigilante from "./components/LoginVigilante"; // Nuevo login
+import LoginVigilante from "./components/LoginVigilante";
 import Landing from "./components/Landing";
+import LoginAdmin from "./components/LoginAdmin";
+import HomeAdministrador from "./components/HomeAdministrador";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/registro-salida" element={<RegistroSalida />} />
         <Route path="/tiempo-real" element={<VisitantesTiempoReal />} />
         <Route path="/reportes" element={<ReporteVisitantes />} />
+        <Route path="/login-admin" element={<LoginAdmin />} />
+        <Route path="/admin-panel" element={<HomeAdministrador />} />
       </Routes>
     </Router>
   );
