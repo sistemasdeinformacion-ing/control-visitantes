@@ -11,6 +11,7 @@ import LoginVigilante from "./components/LoginVigilante";
 import Landing from "./components/Landing";
 import LoginAdmin from "./components/LoginAdmin";
 import HomeAdministrador from "./components/HomeAdministrador";
+import ModuloVigilantes from "./components/ModuloVigilantes";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/reportes" element={<ReporteVisitantes />} />
         <Route path="/login-admin" element={<LoginAdmin />} />
         <Route path="/admin-panel" element={<HomeAdministrador />} />
+        <Route path="/modulo-vigilantes" element={<ModuloVigilantes />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,115 @@
+.modulo-container {
+  display: flex;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.modulo-sidebar {
+  background-color: #0a2a78;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.modulo-logo {
+  width: 95px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.modulo-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-btn {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 90px;
+  text-align: center;
+}
+
+.modulo-user {
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.modulo-user img {
+  width: 40px;
+  height: 40px;
+}
+
+.modulo-content {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+}
+
+.modulo-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 0;
+}
+
+.admin-name {
+  background-color: #0a2a78;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.admin-label {
+  color: #0a2a78;
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+.modulo-title {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  margin: 10px 0 30px;
+  font-size: 33px;
+}
+
+.tabla-vigilantes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #0a2a78;
+  padding-bottom: 10px;
+}
+
+.nombre {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.acciones img {
+  width: 22px;
+  cursor: pointer;
+}
