@@ -9,6 +9,7 @@ const LoginAdmin = () => {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [existeAdmin, setExisteAdmin] = useState(null);
+  const [adminNombre, setAdminNombre] = useState("");
   const [nuevoAdmin, setNuevoAdmin] = useState({
     documento: "",
     nombre: "",
@@ -17,6 +18,20 @@ const LoginAdmin = () => {
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`${API}/api/administradores`)
+      .then(res => res.json())
+      .then(data => {
+        setExisteAdmin(data.length > 0);
+        if (data.length > 0) {
+          setAdminNombre(data[0].nombre);
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+      });
+  }, []);
 
   useEffect(() => {
     fetch(`${API}/api/administradores`)
@@ -76,14 +91,11 @@ const LoginAdmin = () => {
         <p>Cargando...</p>
       ) : existeAdmin ? (
         <form className="formulario-login-admin" onSubmit={handleLogin}>
-          <h2 className="titulo-login-admin">INICIAR SESIÓN</h2>
-
+          <h2 className="titulo-login-admin">{adminNombre}</h2> {/* Muestra el nombre */}
           <label>Usuario:</label>
           <input type="text" value={usuario} onChange={(e) => setUsuario(e.target.value)} />
-
           <label>Contraseña:</label>
           <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
-
           <button type="submit">INGRESAR</button>
         </form>
       ) : (
