@@ -26,7 +26,9 @@ const LoginVigilante = () => {
 
     return (
         <div className="login-container">
-            <img src={logo} alt="Logo" className="logo" />
+            <div className="logo-clickable" onClick={() => navigate("/control-vigilante")}>
+                <img src={logo} alt="logo" className="logo" />
+            </div>
 
             <div className="login-card">
                 <h2>{vigilante ? vigilante.nombre.toUpperCase() : "CARGANDO..."}</h2>

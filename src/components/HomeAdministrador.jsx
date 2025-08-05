@@ -34,7 +34,9 @@ const HomeAdministrador = () => {
   return (
     <div className="admin-container">
       <div className="admin-header">
-        <img src={logo} alt="logo" className="logo" />
+        <div className="logo-clickable" onClick={() => navigate("/control-vigilante")}>
+          <img src={logo} alt="logo" className="logo" />
+        </div>
         <div className="admin-info">
           <span className="admin-name-btn">NOMBRE DEL ADMINISTRADOR</span>
           <span className="admin-label">ADMINISTRADOR</span>

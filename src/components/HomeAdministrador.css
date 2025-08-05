@@ -38,7 +38,6 @@
 }
 
 .admin-label {
-  color: white;
   font-size: 13px;
   font-weight: bold;
   margin-top: 2px;
@@ -100,4 +99,8 @@
 .footer-azul {
   flex-grow: 1;
   background-color: #0a2a78;
+}
+
+.logo-clickable {
+  cursor: pointer;
 }
