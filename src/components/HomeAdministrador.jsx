@@ -13,6 +13,8 @@ import boton1Color from "../assets/vigilantes-color.png";
 import boton2Color from "../assets/visitantes-color.png";
 import boton3Color from "../assets/reportes-color.png";
 
+import Mensaje from "./Mensaje";
+
 const BotonConCambio = ({ imgBn, imgColor, alt, onClick }) => {
   const [hover, setHover] = useState(false);
   return (
@@ -30,18 +32,43 @@ const BotonConCambio = ({ imgBn, imgColor, alt, onClick }) => {
 const HomeAdministrador = () => {
   const navigate = useNavigate();
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [mensaje, setMensaje] = useState({ tipo: "", texto: "" });
   const menuRef = useRef(null);
 
   const nombreAdmin = localStorage.getItem("adminNombre") || "NOMBRE DEL ADMINISTRADOR";
 
   const handleLogout = () => {
     localStorage.removeItem("adminNombre");
-    navigate("/login-admin");
+    localStorage.removeItem("adminDocumento");
+    navigate("/control-vigilante");
   };
 
-  const handleEliminarPerfil = () => {
-    localStorage.removeItem("adminNombre");
-    navigate("/login-admin");
+  const handleEliminarPerfil = async () => {
+    const documento = localStorage.getItem("adminDocumento");
+
+    if (!documento) {
+      setMensaje({ tipo: "error", texto: "No se pudo obtener el documento del administrador." });
+      return;
+    }
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/administrador/${documento}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        setMensaje({ tipo: "error", texto: data.error || "Error al eliminar el perfil." });
+        return;
+      }
+
+      localStorage.removeItem("adminNombre");
+      localStorage.removeItem("adminDocumento");
+      navigate("/registro-admin");
+    } catch (error) {
+      console.error("Error al eliminar perfil:", error);
+      setMensaje({ tipo: "error", texto: "Error al conectar con el servidor." });
+    }
   };
 
   useEffect(() => {
@@ -65,6 +92,8 @@ const HomeAdministrador = () => {
           <span className="admin-label">ADMINISTRADOR</span>
         </div>
       </div>
+
+      <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />
 
       <div className="admin-botones">
         <BotonConCambio imgBn={boton1Bn} imgColor={boton1Color} alt="vigilantes" onClick={() => navigate("/modulo-vigilantes")} />

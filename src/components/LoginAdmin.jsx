@@ -57,7 +57,9 @@ const LoginAdmin = () => {
     const data = await res.json();
 
     if (res.ok) {
-      localStorage.setItem("adminNombre", data.admin.nombre); 
+      localStorage.setItem("adminNombre", data.admin.nombre);
+      localStorage.setItem("adminDocumento", data.admin.documento); // <-- ESTA LÍNEA ES CLAVE
+
       setMensaje({ tipo: "exito", texto: "Inicio de sesión exitoso" });
       setTimeout(() => navigate("/admin-panel"), 1000);
     } else {
