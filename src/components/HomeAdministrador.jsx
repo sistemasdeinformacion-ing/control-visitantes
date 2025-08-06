@@ -52,7 +52,7 @@ const HomeAdministrador = () => {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/administrador/${documento}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/administradores/eliminar/${documento}`, {
         method: 'DELETE',
       });
 
