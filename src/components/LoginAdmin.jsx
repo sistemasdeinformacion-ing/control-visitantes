@@ -57,6 +57,7 @@ const LoginAdmin = () => {
     const data = await res.json();
 
     if (res.ok) {
+      localStorage.setItem("adminNombre", data.admin.nombre); 
       setMensaje({ tipo: "exito", texto: "Inicio de sesión exitoso" });
       setTimeout(() => navigate("/admin-panel"), 1000);
     } else {
@@ -78,9 +79,8 @@ const LoginAdmin = () => {
     if (res.ok) {
       setMensaje({ tipo: "exito", texto: "Administrador registrado correctamente" });
 
-      // Mostrar formulario de registro durante 5 segundos antes de cambiar
       setTimeout(() => {
-        setAdminNombre(nuevoAdmin.nombre); // mostrar nombre en login
+        setAdminNombre(nuevoAdmin.nombre);
         setExisteAdmin(true);
         setNuevoAdmin({
           documento: "",

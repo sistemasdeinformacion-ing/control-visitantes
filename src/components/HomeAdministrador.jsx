@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomeAdministrador.css";
 
@@ -15,7 +15,6 @@ import boton3Color from "../assets/reportes-color.png";
 
 const BotonConCambio = ({ imgBn, imgColor, alt, onClick }) => {
   const [hover, setHover] = useState(false);
-
   return (
     <button
       className="boton-admin"
@@ -30,43 +29,58 @@ const BotonConCambio = ({ imgBn, imgColor, alt, onClick }) => {
 
 const HomeAdministrador = () => {
   const navigate = useNavigate();
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  const menuRef = useRef(null);
+
+  const nombreAdmin = localStorage.getItem("adminNombre") || "NOMBRE DEL ADMINISTRADOR";
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminNombre");
+    navigate("/login-admin");
+  };
+
+  const handleEliminarPerfil = () => {
+    localStorage.removeItem("adminNombre");
+    navigate("/login-admin");
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuAbierto(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="admin-container">
       <div className="admin-header">
-        <div className="logo-clickable" onClick={() => navigate("/control-vigilante")}>
+        <div className="logo-clickable">
           <img src={logo} alt="logo" className="logo" />
         </div>
         <div className="admin-info">
-          <span className="admin-name-btn">NOMBRE DEL ADMINISTRADOR</span>
+          <span className="admin-name-btn">{nombreAdmin}</span>
           <span className="admin-label">ADMINISTRADOR</span>
         </div>
       </div>
 
       <div className="admin-botones">
-        <BotonConCambio
-          imgBn={boton1Bn}
-          imgColor={boton1Color}
-          alt="vigilantes"
-          onClick={() => navigate("/modulo-vigilantes")}
-        />
-        <BotonConCambio
-          imgBn={boton2Bn}
-          imgColor={boton2Color}
-          alt="visitantes"
-          onClick={() => navigate("/modulo-visitantes")}
-        />
-        <BotonConCambio
-          imgBn={boton3Bn}
-          imgColor={boton3Color}
-          alt="reportes"
-          onClick={() => navigate("/modulo-reportes")}
-        />
+        <BotonConCambio imgBn={boton1Bn} imgColor={boton1Color} alt="vigilantes" onClick={() => navigate("/modulo-vigilantes")} />
+        <BotonConCambio imgBn={boton2Bn} imgColor={boton2Color} alt="visitantes" onClick={() => navigate("/modulo-visitantes")} />
+        <BotonConCambio imgBn={boton3Bn} imgColor={boton3Color} alt="reportes" onClick={() => navigate("/modulo-reportes")} />
       </div>
 
       <div className="admin-footer">
-        <div className="icono-inferior" onClick={() => navigate("/login-admin")}>
+        <div className="icono-inferior" onClick={() => setMenuAbierto(!menuAbierto)} ref={menuRef}>
           <img src={adminIcon} alt="admin" />
+          {menuAbierto && (
+            <div className="menu-desplegable">
+              <button className="menu-desplegable-1" onClick={handleLogout}>Salir</button>
+              <button className="menu-desplegable-2" onClick={handleEliminarPerfil}>Eliminar perfil</button>
+            </div>
+          )}
         </div>
         <div className="footer-azul"></div>
       </div>
