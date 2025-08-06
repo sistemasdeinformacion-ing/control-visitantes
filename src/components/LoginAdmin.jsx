@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginAdmin.css";
 import logo from "../assets/logo.png";
+import Mensaje from "./Mensaje";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -17,6 +18,7 @@ const LoginAdmin = () => {
     contrasena: ""
   });
 
+  const [mensaje, setMensaje] = useState({ tipo: "", texto: "" });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,19 +32,18 @@ const LoginAdmin = () => {
       })
       .catch(err => {
         console.error("Error:", err);
+        setMensaje({ tipo: "error", texto: "Error al verificar administrador." });
       });
   }, []);
 
   useEffect(() => {
-    fetch(`${API}/api/administradores`)
-      .then(res => res.json())
-      .then(data => {
-        setExisteAdmin(data.length > 0);
-      })
-      .catch(err => {
-        console.error("Error:", err);
-      });
-  }, []);
+    if (mensaje.texto) {
+      const timer = setTimeout(() => {
+        setMensaje({ tipo: "", texto: "" });
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [mensaje]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -56,9 +57,10 @@ const LoginAdmin = () => {
     const data = await res.json();
 
     if (res.ok) {
-      navigate("/admin-panel");
+      setMensaje({ tipo: "exito", texto: "Inicio de sesión exitoso" });
+      setTimeout(() => navigate("/admin-panel"), 1000);
     } else {
-      alert(data.error || "Error de inicio de sesión");
+      setMensaje({ tipo: "error", texto: data.error || "Error de inicio de sesión" });
     }
   };
 
@@ -74,10 +76,21 @@ const LoginAdmin = () => {
     const data = await res.json();
 
     if (res.ok) {
-      alert("Administrador registrado");
-      setExisteAdmin(true);
+      setMensaje({ tipo: "exito", texto: "Administrador registrado correctamente" });
+
+      // Mostrar formulario de registro durante 5 segundos antes de cambiar
+      setTimeout(() => {
+        setAdminNombre(nuevoAdmin.nombre); // mostrar nombre en login
+        setExisteAdmin(true);
+        setNuevoAdmin({
+          documento: "",
+          nombre: "",
+          usuario: "",
+          contrasena: ""
+        });
+      }, 5000);
     } else {
-      alert(data.error || "Error al registrar");
+      setMensaje({ tipo: "error", texto: data.error || "Error al registrar" });
     }
   };
 
@@ -91,29 +104,50 @@ const LoginAdmin = () => {
         <p>Cargando...</p>
       ) : existeAdmin ? (
         <form className="formulario-login-admin" onSubmit={handleLogin}>
-          <h2 className="titulo-login-admin">{adminNombre}</h2> {/* Muestra el nombre */}
+          <h2 className="titulo-login-admin">{adminNombre}</h2>
+          <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />
           <label>Usuario:</label>
-          <input type="text" value={usuario} onChange={(e) => setUsuario(e.target.value)} />
+          <input
+            type="text"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+          />
           <label>Contraseña:</label>
-          <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
+          <input
+            type="password"
+            value={contrasena}
+            onChange={(e) => setContrasena(e.target.value)}
+          />
           <button type="submit">INGRESAR</button>
         </form>
       ) : (
         <form className="formulario-login-admin" onSubmit={handleRegistro}>
           <h2 className="titulo-login-admin">REGISTRAR ADMINISTRADOR</h2>
-
+          <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />
           <label>Documento:</label>
-          <input type="text" value={nuevoAdmin.documento} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, documento: e.target.value })} />
-
+          <input
+            type="text"
+            value={nuevoAdmin.documento}
+            onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, documento: e.target.value })}
+          />
           <label>Nombre:</label>
-          <input type="text" value={nuevoAdmin.nombre} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, nombre: e.target.value })} />
-
+          <input
+            type="text"
+            value={nuevoAdmin.nombre}
+            onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, nombre: e.target.value })}
+          />
           <label>Usuario:</label>
-          <input type="text" value={nuevoAdmin.usuario} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, usuario: e.target.value })} />
-
+          <input
+            type="text"
+            value={nuevoAdmin.usuario}
+            onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, usuario: e.target.value })}
+          />
           <label>Contraseña:</label>
-          <input type="password" value={nuevoAdmin.contrasena} onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, contrasena: e.target.value })} />
-
+          <input
+            type="password"
+            value={nuevoAdmin.contrasena}
+            onChange={(e) => setNuevoAdmin({ ...nuevoAdmin, contrasena: e.target.value })}
+          />
           <button type="submit">REGISTRAR</button>
         </form>
       )}
