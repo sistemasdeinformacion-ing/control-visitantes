@@ -64,7 +64,7 @@ const HomeAdministrador = () => {
 
       localStorage.removeItem("adminNombre");
       localStorage.removeItem("adminDocumento");
-      navigate("/registro-admin");
+      navigate("/login-admin");
     } catch (error) {
       console.error("Error al eliminar perfil:", error);
       setMensaje({ tipo: "error", texto: "Error al conectar con el servidor." });
