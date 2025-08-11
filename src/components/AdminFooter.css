@@ -1,0 +1,24 @@
+.admin-footer-2 {
+  position: relative;
+}
+
+.icono-inferior-2 {
+  cursor: pointer;
+}
+
+.menu-desplegable-3 {
+  position: absolute;
+  border-radius: 6px;
+  right: -110px;
+  top: -8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-desplegable-1,
+.menu-desplegable-2 {
+  background-color: white;
+  border-color: blue;
+  cursor: pointer;
+  text-align: left;
+}

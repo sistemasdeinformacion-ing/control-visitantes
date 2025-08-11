@@ -9,6 +9,7 @@ import vigilanteHombre from "../assets/vigilante-hombre.png";
 import vigilanteMujer from "../assets/vigilante-mujer.png";
 import axios from "axios";
 import Mensaje from "./Mensaje";
+import AdminFooter from "./AdminFooter";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -133,13 +134,19 @@ const ModuloVigilantes = () => {
   return (
     <div className="modulo-container">
       <div className="modulo-sidebar">
-        <img src={logo} alt="Logo" className="modulo-logo" />
+        <img
+          src={logo}
+          alt="Logo"
+          className="modulo-logo"
+          onClick={() => window.location.href = "/admin-panel"}
+        />
+
         <div className="modulo-nav">
           <button className="nav-btn">VISITANTES</button>
           <button className="nav-btn">REPORTES</button>
         </div>
         <div className="modulo-user">
-          <img src={iconoAdmin} alt="Admin" />
+          <AdminFooter />
         </div>
       </div>
 
@@ -218,7 +225,7 @@ const ModuloVigilantes = () => {
                 <option value="Hombre">Hombre</option>
                 <option value="Mujer">Mujer</option>
               </select>
-              
+
               <label>Usuario</label>
               <input name="usuario" value={editVigilante.usuario || ""} onChange={handleEditChange} />
 
