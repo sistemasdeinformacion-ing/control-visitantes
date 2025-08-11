@@ -12,6 +12,7 @@ import Landing from "./components/Landing";
 import LoginAdmin from "./components/LoginAdmin";
 import HomeAdministrador from "./components/HomeAdministrador";
 import ModuloVigilantes from "./components/ModuloVigilantes";
+import ModuloVisitantes from "./components/ModuloVisitantes";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/control-vigilante" element={<ControlVigilante />} />
-        <Route path="/login-vigilante/:documento" element={<LoginVigilante />} /> {/* Nuevo login */}
+        <Route path="/login-vigilante/:documento" element={<LoginVigilante />} /> 
         <Route path="/home" element={<Home />} />
         <Route path="/registrar-vigilante" element={<RegistroVigilante />} />
         <Route path="/registro-entrada" element={<RegistroEntrada />} />
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login-admin" element={<LoginAdmin />} />
         <Route path="/admin-panel" element={<HomeAdministrador />} />
         <Route path="/modulo-vigilantes" element={<ModuloVigilantes />} />
+        <Route path="/modulo-visitantes" element={<ModuloVisitantes />} />
       </Routes>
     </Router>
   );

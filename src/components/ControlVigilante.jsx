@@ -9,6 +9,8 @@ import vigilanteHombre from "../assets/vigilante-hombre.png";
 import vigilanteMujer from "../assets/vigilante-mujer.png";
 import iconoAgregar from "../assets/icono-agregar.png";
 
+const API_URL = "https://backend-fe7f.onrender.com";
+
 const ControlVigilante = () => {
   const navigate = useNavigate();
   const [vigilantes, setVigilantes] = useState([]);
@@ -17,7 +19,6 @@ const ControlVigilante = () => {
   useEffect(() => {
     const fetchVigilantes = async () => {
       try {
-        const API_URL = "https://backend-fe7f.onrender.com";
         const res = await fetch(`${API_URL}/api/vigilantes`);
 
         if (!res.ok) {
@@ -45,6 +46,18 @@ const ControlVigilante = () => {
     navigate(`/login-vigilante/${vigilante.documento}`, { state: { vigilante } });
   };
 
+  const obtenerIconoVigilante = (v) => {
+    // Si en la BD hay un icono personalizado, úsalo
+    if (v.icono) {
+      return `${API_URL}/uploads/${v.icono}`;
+    }
+    // Si no, usar por género
+    if (v.genero?.toLowerCase() === "mujer") {
+      return vigilanteMujer;
+    }
+    return vigilanteHombre;
+  };
+
   return (
     <div className="control-container">
       <img src={fondoAgua} alt="fondo superior" className="fondo-superior" />
@@ -64,7 +77,7 @@ const ControlVigilante = () => {
           <button key={v.documento} onClick={() => redirigirALogin(v)}>
             <img
               className="icono-persona"
-              src={v.genero === "mujer" ? vigilanteMujer : vigilanteHombre}
+              src={obtenerIconoVigilante(v)}
               alt={`vigilante ${v.genero}`}
             />
             {v.nombre.toUpperCase()}

@@ -5,6 +5,8 @@ import iconoAdmin from "../assets/perfil-blanco.png";
 import iconoVer from "../assets/visualizar.png";
 import iconoEditar from "../assets/editar.png";
 import iconoEliminar from "../assets/eliminar.png";
+import vigilanteHombre from "../assets/vigilante-hombre.png";
+import vigilanteMujer from "../assets/vigilante-mujer.png";
 import axios from "axios";
 import Mensaje from "./Mensaje";
 
@@ -57,7 +59,18 @@ const ModuloVigilantes = () => {
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
-    setEditVigilante(prev => ({ ...prev, [name]: value }));
+    setEditVigilante(prev => {
+      let actualizado = { ...prev, [name]: value };
+
+      if (name === "genero") {
+        actualizado.icono =
+          value.toLowerCase() === "hombre"
+            ? "vigilante-hombre.png"
+            : "vigilante-mujer.png";
+      }
+
+      return actualizado;
+    });
   };
 
   const submitEditar = async (e) => {
@@ -65,7 +78,13 @@ const ModuloVigilantes = () => {
     try {
       const documento = editVigilante.documento;
       const res = await axios.put(`${API}/api/vigilantes/${documento}`, editVigilante);
-      setVigilantes(prev => prev.map(v => v.documento === documento ? res.data.updatedVigilante || editVigilante : v));
+      setVigilantes(prev =>
+        prev.map(v =>
+          v.documento === documento
+            ? res.data.updatedVigilante || editVigilante
+            : v
+        )
+      );
       setMensaje({ tipo: "exito", texto: "Vigilante actualizado correctamente." });
       cerrarEditar();
     } catch (err) {
@@ -100,6 +119,17 @@ const ModuloVigilantes = () => {
     }
   };
 
+  const obtenerIcono = (v) => {
+    if (v.icono) {
+      return v.icono.toLowerCase().includes("mujer")
+        ? vigilanteMujer
+        : vigilanteHombre;
+    }
+    return v.genero?.toLowerCase() === "mujer"
+      ? vigilanteMujer
+      : vigilanteHombre;
+  };
+
   return (
     <div className="modulo-container">
       <div className="modulo-sidebar">
@@ -126,6 +156,11 @@ const ModuloVigilantes = () => {
         <div className="tabla-vigilantes">
           {vigilantes.map((v) => (
             <div className="fila" key={v.documento}>
+              <img
+                src={obtenerIcono(v)}
+                alt="Icono Vigilante"
+                className="icono-vigilante"
+              />
               <span className="nombre">{v.nombre}</span>
               <div className="acciones">
                 <img src={iconoVer} alt="Ver" title="Ver" onClick={() => verVigilante(v)} />
@@ -145,6 +180,11 @@ const ModuloVigilantes = () => {
         <div className="overlay">
           <div className="modal-contenido">
             <h3>Información del Vigilante</h3>
+            <img
+              src={obtenerIcono(vigilanteSeleccionado)}
+              alt="Icono Vigilante"
+              className="icono-vigilante-modal"
+            />
             <p><strong>Documento:</strong> {vigilanteSeleccionado.documento}</p>
             <p><strong>Nombre:</strong> {vigilanteSeleccionado.nombre}</p>
             <p><strong>Género:</strong> {vigilanteSeleccionado.genero}</p>
@@ -168,8 +208,17 @@ const ModuloVigilantes = () => {
               <input name="nombre" value={editVigilante.nombre} onChange={handleEditChange} />
 
               <label>Género</label>
-              <input name="genero" value={editVigilante.genero || ""} onChange={handleEditChange} />
-
+              <select
+                name="genero"
+                value={editVigilante.genero || ""}
+                onChange={handleEditChange}
+                required
+              >
+                <option value="">Seleccione...</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+              </select>
+              
               <label>Usuario</label>
               <input name="usuario" value={editVigilante.usuario || ""} onChange={handleEditChange} />
 

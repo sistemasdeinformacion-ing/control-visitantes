@@ -65,6 +65,8 @@ const RegistroVigilante = () => {
                 return;
             }
 
+            const icono = genero === "hombre" ? "vigilante-hombre.png" : "vigilante-mujer.png";
+
             const infoVigilante = { documento, nombre, genero, usuario, contrasena };
 
             const res = await fetch(`${API_URL}/api/vigilantes/registrar`, {
