@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ModuloVigilantes.css";
 import logo from "../assets/logo.png";
-import iconoAdmin from "../assets/perfil-blanco.png";
 import iconoVer from "../assets/visualizar.png";
 import iconoEditar from "../assets/editar.png";
 import iconoEliminar from "../assets/eliminar.png";
@@ -40,19 +39,13 @@ const ModuloVigilantes = () => {
     }
   };
 
-  const verVigilante = (vigilante) => {
-    setVigilanteSeleccionado(vigilante);
-  };
-
-  const cerrarModalVer = () => {
-    setVigilanteSeleccionado(null);
-  };
+  const verVigilante = (vigilante) => setVigilanteSeleccionado(vigilante);
+  const cerrarModalVer = () => setVigilanteSeleccionado(null);
 
   const abrirEditar = (vigilante) => {
     setEditVigilante({ ...vigilante });
     setEditModalOpen(true);
   };
-
   const cerrarEditar = () => {
     setEditModalOpen(false);
     setEditVigilante(null);
@@ -60,16 +53,14 @@ const ModuloVigilantes = () => {
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
-    setEditVigilante(prev => {
+    setEditVigilante((prev) => {
       let actualizado = { ...prev, [name]: value };
-
       if (name === "genero") {
         actualizado.icono =
           value.toLowerCase() === "hombre"
             ? "vigilante-hombre.png"
             : "vigilante-mujer.png";
       }
-
       return actualizado;
     });
   };
@@ -79,8 +70,8 @@ const ModuloVigilantes = () => {
     try {
       const documento = editVigilante.documento;
       const res = await axios.put(`${API}/api/vigilantes/${documento}`, editVigilante);
-      setVigilantes(prev =>
-        prev.map(v =>
+      setVigilantes((prev) =>
+        prev.map((v) =>
           v.documento === documento
             ? res.data.updatedVigilante || editVigilante
             : v
@@ -100,16 +91,16 @@ const ModuloVigilantes = () => {
     setToDeleteDocumento(documento);
     setConfirmDeleteOpen(true);
   };
-
   const cancelarEliminar = () => {
     setConfirmDeleteOpen(false);
     setToDeleteDocumento(null);
   };
-
   const confirmarEliminar = async () => {
     try {
       await axios.delete(`${API}/api/vigilantes/${toDeleteDocumento}`);
-      setVigilantes(prev => prev.filter(v => v.documento !== toDeleteDocumento));
+      setVigilantes((prev) =>
+        prev.filter((v) => v.documento !== toDeleteDocumento)
+      );
       setMensaje({ tipo: "exito", texto: "Vigilante eliminado correctamente." });
     } catch (err) {
       console.error("Error al eliminar vigilante:", err);
@@ -138,13 +129,24 @@ const ModuloVigilantes = () => {
           src={logo}
           alt="Logo"
           className="modulo-logo"
-          onClick={() => window.location.href = "/admin-panel"}
+          onClick={() => (window.location.href = "/admin-panel")}
         />
 
         <div className="modulo-nav">
-          <button className="nav-btn">VISITANTES</button>
-          <button className="nav-btn">REPORTES</button>
+          <button
+            className="nav-btn"
+            onClick={() => (window.location.href = "/modulo-visitantes")}
+          >
+            VISITANTES
+          </button>
+          <button
+            className="nav-btn"
+            onClick={() => (window.location.href = "/modulo-reportes")}
+          >
+            REPORTES
+          </button>
         </div>
+
         <div className="modulo-user">
           <AdminFooter />
         </div>

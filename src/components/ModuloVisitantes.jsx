@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ← IMPORTANTE
 import Logo from "../assets/logo.png";
 import "./ModuloVisitantes.css";
 import verIcon from "../assets/visualizar.png";
@@ -8,6 +9,8 @@ import adminIcon from "../assets/perfil-blanco.png";
 import AdminFooter from "./AdminFooter";
 
 export default function ModuloVisitantes() {
+    const navigate = useNavigate(); // ← HOOK DE NAVEGACIÓN
+
     const [visitantes, setVisitantes] = useState([]);
     const [busqueda, setBusqueda] = useState("");
     const [modalAbierto, setModalAbierto] = useState(false);
@@ -82,13 +85,24 @@ export default function ModuloVisitantes() {
                     src={Logo}
                     alt="Logo"
                     className="modulo-logo"
-                    onClick={() => window.location.href = "/admin-panel"}
+                    onClick={() => navigate("/admin-panel")}
                 />
 
                 <div className="modulo-nav">
-                    <button className="nav-btn">VIGILANTES</button>
-                    <button className="nav-btn">REPORTES</button>
+                    <button
+                        className="nav-btn"
+                        onClick={() => navigate("/modulo-vigilantes")}
+                    >
+                        VIGILANTES
+                    </button>
+                    <button
+                        className="nav-btn"
+                        onClick={() => navigate("/modulo-reportes")}
+                    >
+                        REPORTES
+                    </button>
                 </div>
+
                 <div className="modulo-user">
                     <AdminFooter />
                 </div>
