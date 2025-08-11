@@ -47,11 +47,9 @@ const ControlVigilante = () => {
   };
 
   const obtenerIconoVigilante = (v) => {
-    // Si en la BD hay un icono personalizado, úsalo
     if (v.icono) {
       return `${API_URL}/uploads/${v.icono}`;
     }
-    // Si no, usar por género
     if (v.genero?.toLowerCase() === "mujer") {
       return vigilanteMujer;
     }
