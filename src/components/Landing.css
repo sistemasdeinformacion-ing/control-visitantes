@@ -26,11 +26,13 @@
 }
 
 .control-texto {
+  font-family: 'Times New Roman', Times, serif;
   color: #1d2a57;
   z-index: 2;
 }
 
 .de-texto {
+  font-family: 'Times New Roman', Times, serif;
   color: #1d2a57;
   font-weight: 300;
   margin-left: 10px;
@@ -38,6 +40,7 @@
 }
 
 .visitantes-texto {
+  font-family: 'Times New Roman', Times, serif;
   font-size: 3rem;
   color: #0071ce;
   font-weight: bold;
