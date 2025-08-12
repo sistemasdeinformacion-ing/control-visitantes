@@ -25,9 +25,11 @@
   border: 1px solid #ccc;
   width: 200px;
   border-radius: 5px;
+  border-color: #09306e;
+  width: 250px;
+  border-style: dashed;
 }
 
-/* Modal */
 .modal {
   position: fixed;
   top: 0;
