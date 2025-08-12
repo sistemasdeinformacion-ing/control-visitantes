@@ -203,27 +203,6 @@ export default function ModuloVisitantes() {
                 value={formData.funcionario}
                 onChange={(e) => setFormData({ ...formData, funcionario: e.target.value })}
               />
-              <input
-                type="text"
-                value={formData.fecha}
-                readOnly
-              />
-              <input
-                type="time"
-                value={formData.horaEntrada}
-                readOnly
-              />
-              <input
-                type="time"
-                value={formData.horaSalida || ""}
-                readOnly
-              />
-              <input
-                type="text"
-                placeholder="Documento Vigilante"
-                value={formData.documentoVigilante}
-                onChange={(e) => setFormData({ ...formData, documentoVigilante: e.target.value })}
-              />
               <div className="modal-buttons">
                 <button type="submit" className="btn-guardar">Guardar</button>
                 <button type="button" className="btn-cancelar" onClick={cerrarModales}>Cancelar</button>
