@@ -59,12 +59,9 @@
 }
 
 .reporte-table {
-  width: 90%;
+  width: 80%;
   border-collapse: collapse;
   margin-bottom: 20px;
-  align-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 .table-wrap {
