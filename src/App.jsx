@@ -13,6 +13,7 @@ import LoginAdmin from "./components/LoginAdmin";
 import HomeAdministrador from "./components/HomeAdministrador";
 import ModuloVigilantes from "./components/ModuloVigilantes";
 import ModuloVisitantes from "./components/ModuloVisitantes";
+import ModuloReportes from "./components/ModuloReportes";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/admin-panel" element={<HomeAdministrador />} />
         <Route path="/modulo-vigilantes" element={<ModuloVigilantes />} />
         <Route path="/modulo-visitantes" element={<ModuloVisitantes />} />
+        <Route path="/modulo-reportes" element={<ModuloReportes />} />
       </Routes>
     </Router>
   );

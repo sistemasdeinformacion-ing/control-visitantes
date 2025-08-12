@@ -1,0 +1,116 @@
+.header-reporte {
+    background-color: #00167a;
+    height: 110px;
+}
+
+.modulo-logo {
+  width: 110px;
+  height: 90px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.reporte-title {
+  font-size: 33px;
+  font-weight: bold;
+  margin-bottom: 55px;
+  color: white;
+  text-align: center;
+  margin-top: -70px;
+}
+
+.reporte-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.reporte-filtros label {
+  font-size: 15px;
+  color: black;
+  padding: 8px 10px;
+}
+
+.reporte-filtros input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.reporte-filtros button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.reporte-filtros button:hover {
+  background-color: #0056b3;
+}
+
+.reporte-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.reporte-table th,
+.reporte-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.reporte-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.reporte-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.reporte-descargas {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.reporte-descargas button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn-pdf {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-pdf:hover {
+  opacity: 0.8;
+}
+
+.btn-excel {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-excel:hover {
+  opacity: 0.8;
+}
