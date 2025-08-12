@@ -1,6 +1,6 @@
 .admin-container {
   background-color: white;
-  min-height: 92vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
