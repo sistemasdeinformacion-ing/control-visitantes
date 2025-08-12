@@ -5,6 +5,9 @@
 .header-reporte {
     background-color: #00167a;
     height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .modulo-logo {
@@ -14,10 +17,8 @@
 }
 
 .reporte-title {
-  margin-bottom: 55px;
   color: white;
   text-align: center;
-  margin-top: -50px;
 }
 
 .reporte-filtros {
