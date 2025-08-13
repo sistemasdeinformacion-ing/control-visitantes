@@ -5,6 +5,28 @@ import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+function extraerYMD(input) {
+  if (!input) return null;
+  const s = String(input);
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) return null;
+  return { y: m[1], m: m[2], d: m[3] };
+}
+
+function formatearFecha(input) {
+  const p = extraerYMD(input);
+  if (!p) return "";
+  return `${p.d}-${p.m}-${p.y}`;
+}
+
+function formatearHora12(hora) {
+  if (!hora) return "";
+  const [h, m] = String(hora).split(":");
+  const fecha = new Date();
+  fecha.setHours(parseInt(h || "0", 10), parseInt(m || "0", 10), 0, 0);
+  return fecha.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+}
+
 const VisitantesTiempoReal = () => {
   const [visitantes, setVisitantes] = useState([]);
   const navigate = useNavigate();
@@ -27,27 +49,6 @@ const VisitantesTiempoReal = () => {
     const interval = setInterval(obtenerVisitantes, 10000); 
     return () => clearInterval(interval);
   }, []);
-
-  const formatearHora12 = (hora) => {
-    if (!hora) return "";
-    const [horas, minutos] = hora.split(":");
-    const fecha = new Date();
-    fecha.setHours(parseInt(horas), parseInt(minutos));
-    return fecha.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
-
-  const formatearFecha = (fechaStr) => {
-    if (!fechaStr) return "";
-    const fecha = new Date(fechaStr);
-    const dia = String(fecha.getDate()).padStart(2, "0");
-    const mes = String(fecha.getMonth() + 1).padStart(2, "0");
-    const año = fecha.getFullYear();
-    return `${dia}-${mes}-${año}`;
-  };
 
   return (
     <div className="tiempo-real-container">
