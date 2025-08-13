@@ -9,19 +9,31 @@ import autoTable from "jspdf-autotable";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const ReporteVisitantes = () => {
-  const [fechaSeleccionada, setFechaSeleccionada] = useState(() => {
-    const hoy = new Date().toISOString().split("T")[0];
-    return hoy;
-  });
+function hoyLocalYYYYMMDD() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0, 10);
+}
 
+function formatearFechaYYYYMMDDaDDMMYYYY(fechaStr) {
+  if (!fechaStr) return "";
+  const s = String(fechaStr);
+  const base = s.slice(0, 10); 
+  const [y, m, d] = base.split("-");
+  return `${d}/${m}/${y}`;
+}
+
+const ReporteVisitantes = () => {
+  const [fechaSeleccionada, setFechaSeleccionada] = useState(() => hoyLocalYYYYMMDD());
   const [visitantes, setVisitantes] = useState([]);
   const logoRef = useRef(null);
   const navigate = useNavigate();
 
   const obtenerVisitantes = async () => {
     try {
-      const respuesta = await fetch(`${API_URL}/api/visitantes/reporte?fecha=${fechaSeleccionada}`);
+      const respuesta = await fetch(
+        `${API_URL}/api/visitantes/reporte?fecha=${encodeURIComponent(fechaSeleccionada)}`
+      );
       if (!respuesta.ok) {
         throw new Error("Error al obtener los datos del reporte");
       }
@@ -34,6 +46,7 @@ const ReporteVisitantes = () => {
 
   useEffect(() => {
     obtenerVisitantes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fechaSeleccionada]);
 
   const handleExportar = () => {
@@ -57,7 +70,7 @@ const ReporteVisitantes = () => {
     doc.setFontSize(12);
     doc.text(`Fecha: ${fechaSeleccionada}`, 50, 28);
     doc.text(vigilanteTexto, 50, 34);
-    doc.text(`Total de visitantes: ${visitantes.length}`, 50, 40); // 👈 NUEVA LÍNEA
+    doc.text(`Total de visitantes: ${visitantes.length}`, 50, 40);
 
     if (visitantes.length === 0) {
       doc.text("No hay registros para esta fecha.", 14, 50);
@@ -96,15 +109,6 @@ const ReporteVisitantes = () => {
     doc.save(`reporte_visitantes_${fechaSeleccionada}.pdf`);
   };
 
-  const formatearFecha = (fechaStr) => {
-    if (!fechaStr) return "";
-    const fecha = new Date(fechaStr);
-    const dia = String(fecha.getDate()).padStart(2, "0");
-    const mes = String(fecha.getMonth() + 1).padStart(2, "0");
-    const año = fecha.getFullYear();
-    return `${dia}/${mes}/${año}`;
-  };
-
   return (
     <div className="reporte-container">
       <div className="reporte-box">
@@ -130,6 +134,7 @@ const ReporteVisitantes = () => {
               type="date"
               value={fechaSeleccionada}
               onChange={(e) => setFechaSeleccionada(e.target.value)}
+              max={hoyLocalYYYYMMDD()}
             />
           </div>
           <button className="btn-exportar" onClick={handleExportar}>
@@ -145,7 +150,7 @@ const ReporteVisitantes = () => {
                 <p><strong>Documento:</strong> {v.documento}</p>
                 <p><strong>Dependencia:</strong> {v.dependencia}</p>
                 <p><strong>Funcionario a visitar:</strong> {v.funcionario}</p>
-                <p><strong>Fecha:</strong> {formatearFecha(v.fecha)}</p>
+                <p><strong>Fecha:</strong> {formatearFechaYYYYMMDDaDDMMYYYY(v.fecha)}</p>
                 <p><strong>Hora Entrada:</strong> {v.horaEntrada}</p>
                 <p><strong>Hora Salida:</strong> {v.horaSalida || "----"}</p>
               </div>
