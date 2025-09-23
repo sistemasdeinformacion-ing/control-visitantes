@@ -72,6 +72,7 @@ const VisitantesTiempoReal = () => {
               <div key={index} className="card-visitante">
                 <p><strong>Nombre:</strong> {v.nombre}</p>
                 <p><strong>Documento:</strong> {v.documento}</p>
+                <p><strong>Telefono:</strong> {v.telefono} </p>
                 <p><strong>Dependencia:</strong> {v.dependencia}</p>
                 <p><strong>Funcionario a visitar:</strong> {v.funcionario}</p>
                 <p><strong>Fecha:</strong> {formatearFecha(v.fecha)}</p>

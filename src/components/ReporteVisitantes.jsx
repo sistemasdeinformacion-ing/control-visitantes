@@ -46,7 +46,6 @@ const ReporteVisitantes = () => {
 
   useEffect(() => {
     obtenerVisitantes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fechaSeleccionada]);
 
   const handleExportar = () => {
@@ -78,6 +77,7 @@ const ReporteVisitantes = () => {
       const columnas = [
         "Nombre",
         "Documento",
+        "Telefono",
         "Dependencia",
         "Funcionario",
         "Hora Entrada",
@@ -88,6 +88,7 @@ const ReporteVisitantes = () => {
       const filas = visitantes.map((v) => [
         v.nombre,
         v.documento,
+        v.telefono,
         v.dependencia,
         v.funcionario,
         v.horaEntrada,
@@ -148,6 +149,7 @@ const ReporteVisitantes = () => {
               <div key={index} className="card-visitante">
                 <p><strong>Nombre:</strong> {v.nombre}</p>
                 <p><strong>Documento:</strong> {v.documento}</p>
+                <p><strong>Telefono:</strong> {v.telefono}</p>
                 <p><strong>Dependencia:</strong> {v.dependencia}</p>
                 <p><strong>Funcionario a visitar:</strong> {v.funcionario}</p>
                 <p><strong>Fecha:</strong> {formatearFechaYYYYMMDDaDDMMYYYY(v.fecha)}</p>
