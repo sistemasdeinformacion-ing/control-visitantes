@@ -9,6 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const RegistroEntrada = () => {
     const [documento, setDocumento] = useState("");
     const [nombre, setNombre] = useState("");
+    const [telefono, setTelefono] = useState(""); 
     const [dependencia, setDependencia] = useState("");
     const [funcionario, setFuncionario] = useState("");
     const [mensaje, setMensaje] = useState({ texto: "", tipo: "" });
@@ -35,6 +36,7 @@ const RegistroEntrada = () => {
         const nuevoVisitante = {
             documento,
             nombre,
+            telefono, 
             dependencia,
             funcionario,
             fecha: fechaFormateada,
@@ -54,6 +56,7 @@ const RegistroEntrada = () => {
             setMensaje({ texto: "Entrada registrada correctamente", tipo: "exito" });
             setDocumento("");
             setNombre("");
+            setTelefono("");
             setDependencia("");
             setFuncionario("");
         } catch (error) {
@@ -73,6 +76,7 @@ const RegistroEntrada = () => {
             if (response.ok) {
                 const data = await response.json();
                 setNombre(data.nombre);
+                setTelefono(data.telefono || "");
                 setDependencia(data.dependencia);
                 setFuncionario(data.funcionario);
             } else if (response.status === 404) {
@@ -124,6 +128,15 @@ const RegistroEntrada = () => {
                         placeholder="Nombre completo"
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
+                        required
+                    />
+
+                    <label>Teléfono:</label>
+                    <input
+                        type="text"
+                        placeholder="Número de teléfono"
+                        value={telefono}
+                        onChange={(e) => setTelefono(e.target.value)}
                         required
                     />
 
