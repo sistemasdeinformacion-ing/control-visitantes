@@ -114,9 +114,11 @@ const ModuloReportes = () => {
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Documento</th>
+                            <th>Teléfono</th>
                             <th>Fecha</th>
                             <th>Hora Entrada</th>
                             <th>Hora Salida</th>
+                            <th>Vigilante</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,9 +127,11 @@ const ModuloReportes = () => {
                                 <td>{v.id}</td>
                                 <td>{v.nombre}</td>
                                 <td>{v.documento}</td>
+                                <td>{v.telefono || "----"}</td>
                                 <td>{v.fecha ? new Date(v.fecha).toLocaleDateString('es-ES') : ''}</td>
                                 <td>{v.hora_entrada}</td>
-                                <td>{v.hora_salida}</td>
+                                <td>{v.hora_salida || "----"}</td>
+                                <td>{v.nombreVigilante || "----"}</td>
                             </tr>
                         ))}
                     </tbody>
