@@ -128,7 +128,7 @@ const ModuloReportes = () => {
                                 <td>{v.nombre}</td>
                                 <td>{v.documento}</td>
                                 <td>{v.telefono || "----"}</td>
-                                <td>{v.fecha ? new Date(v.fecha).toLocaleDateString('es-ES') : ''}</td>
+                                <td>{v.fecha || ''}</td>
                                 <td>{v.hora_entrada}</td>
                                 <td>{v.hora_salida || "----"}</td>
                                 <td>{v.nombreVigilante || "----"}</td>
