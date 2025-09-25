@@ -39,7 +39,7 @@
 
 .titulo {
   font-family: 'Georgia', serif;
-  font-size: 31px;
+  font-size: 35px;
   color: black;
   margin: 10px;
 }
@@ -55,11 +55,11 @@
   background-color: #a2c6e2;
   border: 2px solid #00167a;
   color: black;
-  padding: 15px;
+  padding: 22px;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   transition: background 0.3s;
 }
 
