@@ -101,10 +101,14 @@ select {
 }
 
 .modal-content {
+  background: white;
   border-radius: 12px;
   max-width: 500px;
+  width: 100%;
+  padding: 25px;
   text-align: center;
   position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .modal-content p {
@@ -135,4 +139,24 @@ select {
   border: none;
   font-size: 20px;
   cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; 
+  z-index: 1000;
+}
+
+.modal-check {
+  align-items: center;
+  gap: 8px; 
+  margin-top: 15px;
 }
