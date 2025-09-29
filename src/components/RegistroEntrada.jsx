@@ -127,7 +127,7 @@ const RegistroEntrada = () => {
                             onClick={() => setMostrarModal(false)}
                             disabled={!acepto}
                         >
-                            Continuar
+                            CONTINUAR
                         </button>
                     </div>
                 </div>
