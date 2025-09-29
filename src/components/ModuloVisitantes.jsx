@@ -18,6 +18,9 @@ export default function ModuloVisitantes() {
   const [modalVer, setModalVer] = useState(null);
   const [modoEdicion, setModoEdicion] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; 
+
   const [formData, setFormData] = useState({
     nombre: "",
     documento: "",
@@ -46,9 +49,7 @@ export default function ModuloVisitantes() {
     await axios.post(`${API}/api/visitantes/entrada`, nuevo);
   };
 
-  const abrirModalVer = (visitante) => {
-    setModalVer(visitante);
-  };
+  const abrirModalVer = (visitante) => setModalVer(visitante);
 
   const abrirModalEditar = (visitante) => {
     const fechaFormateada = visitante.fecha
@@ -98,6 +99,11 @@ export default function ModuloVisitantes() {
     v.documento?.includes(busqueda)
   );
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const visitantesPaginados = visitantesFiltrados.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(visitantesFiltrados.length / itemsPerPage);
+
   return (
     <div className="modulo-container">
       <div className="modulo-sidebar">
@@ -135,12 +141,15 @@ export default function ModuloVisitantes() {
             type="text"
             placeholder="Buscar visitante..."
             value={busqueda}
-            onChange={(e) => setBusqueda(e.target.value)}
+            onChange={(e) => {
+              setBusqueda(e.target.value);
+              setCurrentPage(1); 
+            }}
           />
         </div>
 
         <div className="tabla-visitantes">
-          {visitantesFiltrados.map((v) => (
+          {visitantesPaginados.map((v) => (
             <div className="fila" key={v.id}>
               <div className="nombre">{v.nombre}</div>
               <div className="acciones">
@@ -154,6 +163,34 @@ export default function ModuloVisitantes() {
             <div className="vacio">No se encontraron visitantes.</div>
           )}
         </div>
+
+        {totalPages > 1 && (
+          <div className="paginacion">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              «
+            </button>
+
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                className={currentPage === i + 1 ? "activo" : ""}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              »
+            </button>
+          </div>
+        )}
       </div>
 
       {modalVer && (

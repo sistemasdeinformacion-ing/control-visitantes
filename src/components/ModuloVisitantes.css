@@ -105,6 +105,39 @@
   background-color: #999;
 }
 
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 5px;
+}
+
+.paginacion button {
+  background: #f5f5f5;
+  border: 1px solid #09306e;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #09306e;
+}
+
+.paginacion button:hover {
+  background: #09306e;
+  color: white;
+}
+
+.paginacion button:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+  color: #666;
+}
+
+.paginacion .activo {
+  background: #09306e;
+  color: white;
+  font-weight: bold;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
