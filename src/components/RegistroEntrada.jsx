@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegistroEntrada.css";
 import logo from "../assets/logo.png";
-import Mensaje from "./Mensaje"; 
+import Mensaje from "./Mensaje";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const RegistroEntrada = () => {
     const [documento, setDocumento] = useState("");
     const [nombre, setNombre] = useState("");
-    const [telefono, setTelefono] = useState(""); 
+    const [telefono, setTelefono] = useState("");
     const [dependencia, setDependencia] = useState("");
     const [funcionario, setFuncionario] = useState("");
     const [mensaje, setMensaje] = useState({ texto: "", tipo: "" });
+    const [mostrarModal, setMostrarModal] = useState(true);
+    const [acepto, setAcepto] = useState(false);
+
     const vigilante = JSON.parse(localStorage.getItem("vigilante"));
 
     useEffect(() => {
@@ -36,7 +39,7 @@ const RegistroEntrada = () => {
         const nuevoVisitante = {
             documento,
             nombre,
-            telefono, 
+            telefono,
             dependencia,
             funcionario,
             fecha: fechaFormateada,
@@ -92,84 +95,124 @@ const RegistroEntrada = () => {
 
     return (
         <div className="entrada-container">
-            <div className="entrada-form">
-                <img
-                    src={logo}
-                    alt="Logo"
-                    className="logo-form"
-                    onClick={() => navigate("/home")}
-                    style={{ cursor: "pointer" }}
-                />
+            {mostrarModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
 
-                <h2>
-                    <span className="titulo-negro">REGISTRO</span>{" "}
-                    <span className="titulo-azul">ENTRADA</span>
-                </h2>
+                        <button
+                            className="modal-close"
+                            onClick={() => navigate("/home")}
+                        >
+                            X
+                        </button>
 
-                {mensaje.texto && <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />}
+                        <h3 className="titulo-modal">Autorización tratamiento de datos personales</h3>
+                        <p>
+                            Autorizo de manera libre, previa, e informada a
+                            <b> Empresas Públicas del Quindío</b> para recolectar mis datos personales
+                            con la finalidad de controlar mi ingreso y salida de las instalaciones,
+                            en cumplimiento de la Ley 1581 de 2012 y demás normas aplicables.
+                        </p>
+                        <div className="modal-check">
+                            <input className="checkbox"
+                                type="checkbox"
+                                id="acepto"
+                                checked={acepto}
+                                onChange={() => setAcepto(!acepto)}
+                            />
+                            <label htmlFor="acepto">Acepto la autorización</label>
+                        </div>
+                        <button
+                            className="modal-btn"
+                            onClick={() => setMostrarModal(false)}
+                            disabled={!acepto}
+                        >
+                            Continuar
+                        </button>
+                    </div>
+                </div>
+            )}
 
-                <form onSubmit={handleSubmit}>
-                    <label>Documento de Identidad:</label>
-                    <input
-                        type="text"
-                        placeholder="Número de documento"
-                        value={documento}
-                        onChange={(e) => setDocumento(e.target.value)}
-                        required
+            {!mostrarModal && (
+                <div className="entrada-form">
+                    <img
+                        src={logo}
+                        alt="Logo"
+                        className="logo-form"
+                        onClick={() => navigate("/home")}
+                        style={{ cursor: "pointer" }}
                     />
 
-                    <button className="search" type="button" onClick={buscarVisitante}>
-                        BUSCAR
-                    </button>
+                    <h2>
+                        <span className="titulo-negro">REGISTRO</span>{" "}
+                        <span className="titulo-azul">ENTRADA</span>
+                    </h2>
 
-                    <label>Nombre:</label>
-                    <input
-                        type="text"
-                        placeholder="Nombre completo"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                        required
-                    />
+                    {mensaje.texto && <Mensaje tipo={mensaje.tipo} texto={mensaje.texto} />}
 
-                    <label>Teléfono:</label>
-                    <input
-                        type="text"
-                        placeholder="Número de teléfono"
-                        value={telefono}
-                        onChange={(e) => setTelefono(e.target.value)}
-                        required
-                    />
+                    <form onSubmit={handleSubmit}>
+                        <label>Documento de Identidad:</label>
+                        <input
+                            type="text"
+                            placeholder="Número de documento"
+                            value={documento}
+                            onChange={(e) => setDocumento(e.target.value)}
+                            required
+                        />
 
-                    <label>Dependencia:</label>
-                    <select
-                        value={dependencia}
-                        onChange={(e) => setDependencia(e.target.value)}
-                        required
-                    >
-                        <option value="" disabled>Seleccionar</option>
-                        <option value="SUBGERENCIA ADMINISTRATIVA Y FINANCIERA">SUBGERENCIA ADMINISTRATIVA Y FINANCIERA</option>
-                        <option value="SECRETARÍA GENERAL">SECRETARÍA GENERAL</option>
-                        <option value="SUBGERENCIA DE PLANEACION Y MEJORAMIENTO INSTITUCIONAL">SUBGERENCIA DE PLANEACION Y MEJORAMIENTO INSTITUCIONAL</option>
-                        <option value="SUBGERENCIA DE SERVICIOS PUBLICOS">SUBGERENCIA DE SERVICIOS PUBLICOS</option>
-                        <option value="TALENTO HUMANO">TALENTO HUMANO</option>
-                        <option value="SUBGERENCIA DE COMERCIALIZACIÓN DE SERVICIOS Y ATENCIÓN AL CLIENTE">SUBGERENCIA DE COMERCIALIZACIÓN DE SERVICIOS Y ATENCIÓN AL CLIENTE</option>
-                        <option value="CONTROL INTERNO DE GESTIÓN">CONTROL INTERNO DE GESTIÓN</option>
-                        <option value="CONTROL INTERNO DISCIPLINARIO">CONTROL INTERNO DISCIPLINARIO</option>
-                        <option value="TESORERIA">TESORERIA</option>
-                    </select>
+                        <button className="search" type="button" onClick={buscarVisitante}>
+                            BUSCAR
+                        </button>
 
-                    <label>Funcionario a Visitar:</label>
-                    <input
-                        type="text"
-                        placeholder="Nombre del funcionario"
-                        value={funcionario}
-                        onChange={(e) => setFuncionario(e.target.value)}
-                        required
-                    />
+                        <label>Nombre:</label>
+                        <input
+                            type="text"
+                            placeholder="Nombre completo"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            required
+                        />
 
-                    <button className="submit" type="submit">REGISTRAR ENTRADA</button>
-                </form>
-            </div>
+                        <label>Teléfono:</label>
+                        <input
+                            type="text"
+                            placeholder="Número de teléfono"
+                            value={telefono}
+                            onChange={(e) => setTelefono(e.target.value)}
+                            required
+                        />
+
+                        <label>Dependencia:</label>
+                        <select
+                            value={dependencia}
+                            onChange={(e) => setDependencia(e.target.value)}
+                            required
+                        >
+                            <option value="" disabled>Seleccionar</option>
+                            <option value="SUBGERENCIA ADMINISTRATIVA Y FINANCIERA">SUBGERENCIA ADMINISTRATIVA Y FINANCIERA</option>
+                            <option value="SECRETARÍA GENERAL">SECRETARÍA GENERAL</option>
+                            <option value="SUBGERENCIA DE PLANEACION Y MEJORAMIENTO INSTITUCIONAL">SUBGERENCIA DE PLANEACION Y MEJORAMIENTO INSTITUCIONAL</option>
+                            <option value="SUBGERENCIA DE SERVICIOS PUBLICOS">SUBGERENCIA DE SERVICIOS PUBLICOS</option>
+                            <option value="TALENTO HUMANO">TALENTO HUMANO</option>
+                            <option value="SUBGERENCIA DE COMERCIALIZACIÓN DE SERVICIOS Y ATENCIÓN AL CLIENTE">SUBGERENCIA DE COMERCIALIZACIÓN DE SERVICIOS Y ATENCIÓN AL CLIENTE</option>
+                            <option value="CONTROL INTERNO DE GESTIÓN">CONTROL INTERNO DE GESTIÓN</option>
+                            <option value="CONTROL INTERNO DISCIPLINARIO">CONTROL INTERNO DISCIPLINARIO</option>
+                            <option value="TESORERIA">TESORERIA</option>
+                        </select>
+
+                        <label>Funcionario a Visitar:</label>
+                        <input
+                            type="text"
+                            placeholder="Nombre del funcionario"
+                            value={funcionario}
+                            onChange={(e) => setFuncionario(e.target.value)}
+                            required
+                        />
+
+                        <button className="submit" type="submit">REGISTRAR ENTRADA</button>
+                    </form>
+                </div>
+            )}
         </div>
     );
 };

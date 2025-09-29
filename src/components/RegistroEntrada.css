@@ -92,3 +92,47 @@ select {
   height: 30px;
   font-size: 10px;
 }
+
+.checkbox {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  border-color: #00167a
+}
+
+.modal-content {
+  border-radius: 12px;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.modal-btn {
+  margin-top: 15px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #ececec, #b3b1b1);
+}
+
+.modal-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
