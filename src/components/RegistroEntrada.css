@@ -148,7 +148,6 @@ select {
 .modal-overlay {
   position: fixed;
   inset: 0; 
-  background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -180,7 +179,6 @@ select {
   color: #162144;
   font-size: 0.95rem;
 }
-
 
 .modal-btn:disabled {
   opacity: 0.5;
