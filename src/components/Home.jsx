@@ -60,7 +60,7 @@ const Home = () => {
                 {vigilante && (
                     <div className="vigilante-activo">
                         <img src={icono} alt="icono vigilante" className="icono-vigilante" />
-                        <span className="nombre-vigilante">{vigilante.nombre}</span>
+                        <span className="nombre-vigilante-header">{vigilante.nombre}</span>
 
                         <button
                             className="boton-cerrar-turno"

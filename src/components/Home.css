@@ -18,6 +18,13 @@
   display: flex;
 }
 
+.nombre-vigilante-header {
+  font-weight: bold;
+  color: #162144;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
 .logo {
   border: 2px solid #00167a;
   height: 100px;
@@ -26,6 +33,7 @@
   background-color: white;
   z-index: 2;
 }
+
 .fondo-superior {
   position: absolute;
   top: 0;
