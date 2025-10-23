@@ -7,7 +7,7 @@ import './ModuloReportes.css';
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/reportes`
-    : 'https://backend-fe7f.onrender.com/api/reportes';
+    : 'https://backend-vb5s.onrender.com/api/reportes';
 
 const ModuloReportes = () => {
     const [fechaInicio, setFechaInicio] = useState('');

@@ -11,7 +11,7 @@ const RegistroAdmin = () => {
   const handleRegistro = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("https://backend-fe7f.onrender.com/admin/registrar", {
+      const res = await fetch("https://backend-vb5s.onrender.com/admin/registrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usuario, contrasena }),

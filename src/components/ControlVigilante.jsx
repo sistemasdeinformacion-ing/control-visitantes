@@ -9,7 +9,7 @@ import vigilanteHombre from "../assets/vigilante-hombre.png";
 import vigilanteMujer from "../assets/vigilante-mujer.png";
 import iconoAgregar from "../assets/icono-agregar.png";
 
-const API_URL = "https://backend-fe7f.onrender.com";
+const API_URL = "https://backend-vb5s.onrender.com";
 
 const ControlVigilante = () => {
   const navigate = useNavigate();

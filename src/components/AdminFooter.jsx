@@ -14,7 +14,7 @@ export default function AdminFooter() {
 
   const eliminarPerfil = () => {
     const documento = localStorage.getItem("adminDocumento");
-    fetch(`https://backend-fe7f.onrender.com/api/eliminar-admin/${documento}`, {
+    fetch(`https://backend-vb5s.onrender.com/api/eliminar-admin/${documento}`, {
       method: "DELETE",
     })
       .then(() => salir())
